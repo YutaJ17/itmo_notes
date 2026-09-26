@@ -22,7 +22,7 @@ ITMO university study materials, Information Systems and Technologies, y29.
 *   [Коллоквиум 4](./2-semester/discrete_math/discrete_math_col_4.pdf)
 
 ### Математический анализ
-*   [Тех конспект](./2-semester/math_analysis/math_an_2_sem_v_1.0.pdf) *(все, кроме элементов операционного исчисления, появятся позже)*
+*   [Тех конспект](./2-semester/math_analysis/math_an_2_sem_v_1.0.pdf) *(без элементов операционного исчисления, появятся позже)*
 
 ### Линейная алгебра
 *   [1-ая часть тех конспекта](./2-semester/linear_algebra/lin_al_2_sem_part1.pdf) *(без диффуров, появятся позже)*
