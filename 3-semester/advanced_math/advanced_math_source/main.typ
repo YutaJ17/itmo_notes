@@ -24,7 +24,7 @@
 #nota[
  Будем рассматривать часть плоскости $D$, ограниченную замкнутой простой (без самопересечений) кривой $gamma$. 
 ]
-#image("im1.png", width: 50%)
+#image("images/im1.png", width: 50%)
 
 Будем следовать плану определения $integral_a^b f(x) dif x$.
 #mem[
@@ -51,23 +51,23 @@
   $f(x,y): overline(D) subset RR^2 -> RR$
   1. Дробление $overline(D)$ на элементарные площадки (произвольной формы) $Delta S_i$ (площадь).
 
-#image("im2_1.png", width: 40%)
+#image("images/im2_1.png", width: 40%)
 
   2. Выбор средних точек $M_i (xi_i, eta_i)$ в каждом $Delta S_i$.
-  #image("im3.png",width: 50%)
+  #image("images/im3.png",width: 50%)
 \ \
   3. Интегральная сумма
   $ nu_n = sum_(i=1)^n f(xi_i, eta_i) Delta S_i $
-  #image("im4.png",width: 50%)
+  #image("images/im4.png",width: 50%)
   4. Предельный переход: $tau = max S_i->0, n->oo:$
   $ limits(integral.double)_D f(x,y) dif S eqlong(top:"def") lim_(mat(delim: #none,n->oo; tau->0)) sum_(i=1)^n f(xi_i, eta_i) Delta S_i, space "если предел существует," $
   $ "конечен и не зависит от выбора средних точек." $
   
 #grid(
-  columns: (1fr, 1fr), // Два столбца одинаковой ширины
+  columns: (1fr, 1fr), 
   
-  image("im5.png",width: 100%),
-  image("im6.png",width: 100%)
+  image("images/im5.png",width: 100%),
+  image("images/im6.png",width: 100%)
 )
 ]
 
@@ -85,7 +85,7 @@
 #ex[
   Найти площадь между кривыми:
   $ cases(y=1+x^2,y=2x^2) $
-  #image("im7.png", width: 80%)
+  #image("images/im7.png", width: 80%)
   Решим задачу с помощью двойного интеграла (обоснование см. ниже):
   $ S_D = limits(integral.double)_D 1 dot dif x dif y = integral_(-1)^1 dif x integral_(2x^2)^(1+x^2) 1 dot dif y = $
   $ = integral_(-1)^1 dif x dot (1+x^2 -2x^2) = lr((-1/3 x^3 + x)|)_(-1)^1 = 4/3 $
@@ -102,9 +102,9 @@
   Область $D$ называется #term[правильной в направлении $O y$], если она ограничена двумя кривыми: "нижней" $y_1(x)$ и "верхней" $y_2(x)$. \
   Любая прямая, сонаправленная $O y$, входит в область $D$ через $y_1(x)$ (и только) и выходит через $y_2(x)$ (и только).
 
-#image("im8.png", width: 80%)
+#image("images/im8.png", width: 80%)
 ]
-#image("im9_1.png")
+#image("images/im9_1.png")
 #nota[
   Заметим, что область, представленная на рисунке выше, является неправильной по направлению $O y$, но является правильной по направлению $O x$.
 ]
@@ -116,10 +116,10 @@
 Зафиксируем $x=c$ и пересечем этой плоскостью поверхность $z=f(x,y)$. 
 
 #grid(
-  columns: (1fr, 1fr), // Два столбца одинаковой ширины
+  columns: (1fr, 1fr),
   
-  image("im11.png",width: 100%),
-  image("im11.1.png",width: 100%)
+  image("images/im11.png",width: 100%),
+  image("images/im11.1.png",width: 100%)
 )
 
 
@@ -155,7 +155,7 @@ $ integral_a^b (integral_(y_1(x))^(y_2(x)) f(x,y) dif y) dif x eqlong(top:"за�
 === 2. Тройной интеграл
 \
 $T$ -- тело, область интегрирования $f(x,y,z):T subset RR^3 -> RR$. \
-#image("im12.png")
+#image("images/im12.png")
 Делим $T$ на элементарные объемы $Delta nu_i$, выбираем средние точки $M_i ( xi_i, eta_i, zeta_i)$, составляем интегральную сумму и делаем предельный переход:
 #def(title: "Тройной интеграл")[
   $ limits(integral.triple)_T f(x_i, y_i, z_i) dif nu = lim_(mat(delim: #none,n->oo; tau->0)) sum_(i=1)^n f(M_i) Delta nu_i $
@@ -184,7 +184,7 @@ $ limits(integral.triple)_T f(x_i, y_i, z_i) dif x dif y dif z = integral_a^b di
 
   $(arrow(i), arrow(j)) - "правая ориентация."$
 
-  #image("image.png", width: 50%)
+  #image("images/image.png", width: 50%)
   Для осей задается порядок: $(underbrace(arrow(i), "1ая"), underbrace(arrow(j), "2ая"))$
 
 
@@ -200,10 +200,10 @@ $ limits(integral.triple)_T f(x_i, y_i, z_i) dif x dif y dif z = integral_a^b di
 
     
 #grid(
-  columns: (1fr, 1.2fr), // Два столбца одинаковой ширины
+  columns: (1fr, 1.2fr), 
   
-  image("im.png",width: 70%),
-  image("im0.png",width: 70%)
+  image("images/im.png",width: 70%),
+  image("images/im0.png",width: 70%)
 )
 ]
 
@@ -211,7 +211,7 @@ $ limits(integral.triple)_T f(x_i, y_i, z_i) dif x dif y dif z = integral_a^b di
 #ex[
   ПСК в $RR^2$.
 
-  #image("im01.png")
+  #image("images/im01.png")
 
   $rho in RR_0^+$
 
@@ -235,7 +235,7 @@ $ limits(integral.triple)_T f(x_i, y_i, z_i) dif x dif y dif z = integral_a^b di
 $ cases(x= rho cos phi, y = rho sin phi) $
 
 
- #image("im02.png")
+ #image("images/im02.png")
 
 
 #pagebreak()
@@ -254,7 +254,7 @@ $ cases(x= rho cos phi, y = rho sin phi) $
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("image (2).png", width: 50%),
+  image("images/image (2).png", width: 50%),
   $ cases(x = rho cos phi, y = rho sin phi, z = z) $
 )
 
@@ -262,7 +262,7 @@ $ cases(x= rho cos phi, y = rho sin phi) $
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im03.png"),
+  image("images/im03.png"),
   [Если зафиксировать $rho = a$, то будут цилиндры.]
 )
 
@@ -271,7 +271,7 @@ $ cases(x= rho cos phi, y = rho sin phi) $
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im04.png"),
+  image("images/im04.png"),
   [Если зафиксировать $phi = a$, то будут вертикальные плоскости.]
 )
 
@@ -279,7 +279,7 @@ $ cases(x= rho cos phi, y = rho sin phi) $
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im14.png"),
+  image("images/im14.png"),
   [Если зафиксировать $z = a$, то будут плоскости.]
 )
 
@@ -290,7 +290,7 @@ $ cases(x= rho cos phi, y = rho sin phi) $
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-image("im15.png", width: 70%),
+image("images/im15.png", width: 70%),
 $ cases(x=rho cos phi sin theta,y=rho sin phi sin theta,z=rho cos theta) $
 )
 
@@ -304,7 +304,7 @@ $ rho = O M, \ theta = angle(O z; arrow(O M)) \ M' = "Пр"_(O x y) M \ phi = an
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im16.png"),
+  image("images/im16.png"),
   [Если зафиксировать $rho = a$, то будут сферы.]
 )
 
@@ -312,21 +312,21 @@ $ rho = O M, \ theta = angle(O z; arrow(O M)) \ M' = "Пр"_(O x y) M \ phi = an
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im17.png"),
+  image("images/im17.png"),
   [Если зафиксировать $phi = a$, то будут вертикальные плоскости.]
 )
 #grid(
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im18.png"),
+  image("images/im18.png"),
   [Если зафиксировать $theta = a$, то будут конусы.]
 )
 #grid(
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im19.png", width: 70%),
+  image("images/im19.png", width: 70%),
   [Задание точки.]
 )
 
@@ -346,8 +346,8 @@ $ rho = O M, \ theta = angle(O z; arrow(O M)) \ M' = "Пр"_(O x y) M \ phi = an
   columns: (auto, auto),
   gutter: 1em,
   align: (center + horizon, center + horizon),
-  image("im20.png", width: 90%),
-  image("im21.png", width: 90%)
+  image("images/im20.png", width: 90%),
+  image("images/im21.png", width: 90%)
 )
   
   Разрезая при дроблении на элементарные участки координатными линиями, получаем _элементы разной формы_, площади которых вычисляются по _разным формулам_.
@@ -357,9 +357,9 @@ $ rho = O M, \ theta = angle(O z; arrow(O M)) \ M' = "Пр"_(O x y) M \ phi = an
 $ O x y  --> O u v $
 $ cases(x=phi(u,v), y = psi(u,v)) space, phi, psi - "непр. дифф." $
 
-#let img = image("im22.png", width: 7cm)
+#let img = image("images/im22.png", width: 7cm)
 
-#let img1 = image("im23.png", width: 9cm)
+#let img1 = image("images/im23.png", width: 9cm)
 
 #grid(
   columns: 2,
@@ -393,7 +393,7 @@ $ cases(x=phi(u,v), y = psi(u,v)) space, phi, psi - "непр. дифф." $
 За счет малости участка $Delta S$ и гладкости функций $phi, psi$, можно считать площадь $Delta S approx S_(A B C' D)$.
 
 Пояснение: параллелограмм однозначно задается тремя точками: $A, B, D$. При этом точка $C$ образует с тремя другими именно криволинейный параллелограмм. Чтобы образовать обычный параллелограмм, точка $C$ сдвинется в $C'$:
-#image("im24.png", width: 60%)
+#image("images/im24.png", width: 60%)
 #pagebreak()
 Так как $u, v -$ криволинейные координаты, а $u="const"$ и $v="const"$ -- координатные кривые, то мы можем задать точки, лежащие на пересечении некоторых координатных кривых:
 $ 
