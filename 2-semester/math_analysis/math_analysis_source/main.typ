@@ -292,7 +292,7 @@ $integral_a^b f(x) dif x eqlong(top: x = phi(t)) integral_alpha^beta f(phi(t))ph
 
 == 8.5 Приложение определенного интеграла
 
-#image("table.pdf")
+#image("images/table.pdf")
 
 #pagebreak()
 
@@ -1104,7 +1104,7 @@ b_m = 1/pi (integral_(-pi)^pi f(t) sin m t dif t).  $
 \
 Периодический сигнал:
 
-#image("photo_1.jpg", width: 60%)
+#image("images/photo_1.jpg", width: 60%)
 
 Период — $T$, частота — $omega = (2 pi) / T$. \
 
@@ -1123,10 +1123,10 @@ $ f(t) = A/2 + \ +(2A)/pi (
 
 Частичные суммы Фурье:
 
-#image("photo_2.jpg", width: 50%) 
-#image("photo_3.jpg", width: 50%) 
-#image("photo_24.jpg", width: 50%) 
-#image("photo_5.jpg", width: 50%) 
+#image("images/photo_2.jpg", width: 50%) 
+#image("images/photo_3.jpg", width: 50%) 
+#image("images/photo_24.jpg", width: 50%) 
+#image("images/photo_5.jpg", width: 50%) 
 
 $S(x)-$ сумма ряда Фурье - сумма гармонических колебаний с частотами: \
 $ omega_1 = omega = (2pi)/T $  $ 
