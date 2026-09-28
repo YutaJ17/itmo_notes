@@ -21,6 +21,10 @@ ITMO university study materials, Information Systems and Technologies, y29.
 *   [Коллоквиум 3](./2-semester/discrete_math/discrete_math_col_3.pdf)
 *   [Коллоквиум 4](./2-semester/discrete_math/discrete_math_col_4.pdf)
 
+### Алгоритмы и структуры данных
+*   [LZ77 algorithm](./2-semester/algorithms/LZ77.md)
+
+
 ### Математический анализ
 *   [Тех конспект](./2-semester/math_analysis/math_an_2_sem_v_1.0.pdf) *(без элементов операционного исчисления, появятся позже)*
 
