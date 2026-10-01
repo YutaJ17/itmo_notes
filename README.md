@@ -13,14 +13,6 @@ ITMO university study materials, Information Systems and Technologies, y29.
 ### Алгоритмы и структуры данных
 *   [Методичка по асимптотике](./1-semester/algorithms/asymptotics.pdf)
 
-
-### Математический анализ
-*   [Конспект](./1-semester/math_analysis/math_an_1_sem.pdf) *(позже будет переведен в typst)*
-
-### Линейная алгебра
-*   [Конспект](./1-semester/linear_algebra/lin_al_1_sem.pdf) *(позже будет переведен в typst)*
-*   [Теоретический минимум к экзамену]((./1-semester/linear_algebra/lin_al_1_sem_theormin.pdf))
-
 ---
 
 ## 2й семестр
