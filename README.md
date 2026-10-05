@@ -39,7 +39,7 @@ ITMO university study materials, Information Systems and Technologies, y29.
 *   [Тех конспект](./3-semester/advanced_math/math_3_sem_v_1.0.pdf) *(до лекции №2 включительно)*
 
 ### Теория вероятностей
-*   [Тех конспект](./3-semester/probability_theory/theory_of_probability.pdf) *(до лекции №4 включительно)*
+*   [Тех конспект](./3-semester/probability_theory/theory_of_probability.pdf) *(до лекции №5 включительно)*
 
 ---
 
