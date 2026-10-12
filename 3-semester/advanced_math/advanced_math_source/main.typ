@@ -4,22 +4,34 @@
 
 #import "@preview/cetz:0.3.1"
 #import "@preview/fletcher:0.5.7": diagram, node, edge
-#set outline.entry(fill: repeat([.]))
 
-#show outline.entry.where(level: 1): it => {
-  v(12pt, weak: true) 
-  strong(it)         
+#set heading(numbering: (..nums) => {
+  let n = nums.pos()
+  if n.len() == 2 {
+    [§]
+  } else if n.len() == 2 {
+    numbering("1", n.at(1))
+  } else {
+    numbering("1.1", ..n.slice(1))
+  }
+})
+
+// Все заголовки жирные
+#show heading: it => {
+  set text(weight: "bold")
+  it
 }
 
 #outline()
-#pagebreak() 
+
+#pagebreak()
 
 
 
 = Интегрирование ФНП
 == Кратные интегралы
-=== 1. Двойной интеграл
-==== 1.1 Определение
+=== Двойной интеграл
+==== Определение
 \
 #nota[
  Будем рассматривать часть плоскости $D$, ограниченную замкнутой простой (без самопересечений) кривой $gamma$. 
@@ -64,7 +76,7 @@
   $ "конечен и не зависит от выбора средних точек." $
   
 #grid(
-  columns: (1fr, 1fr), 
+  columns: (1fr, 1fr), // Два столбца одинаковой ширины
   
   image("images/im5.png",width: 100%),
   image("images/im6.png",width: 100%)
@@ -92,7 +104,7 @@
 ]
 
 
-==== 1.2. Вычисление двойного интеграла
+==== Вычисление двойного интеграла
 
 #nota[
   Вычисление $integral_(a)^b f(x) dif x$ (там, где это возможно) велось по формуле N-L. С двойным интегралом поступим также. Для решения задачи в простейшем случае потребуем дополнительного свойства от области $D$: #term[правильности в координатном направлении].
@@ -110,13 +122,13 @@
 ]
 
 #pagebreak()
-==== 1.3. Вывод формулы вычисления
+==== Вывод формулы вычисления
 \
 Функция $f(x,y):D -> RR.$ \
 Зафиксируем $x=c$ и пересечем этой плоскостью поверхность $z=f(x,y)$. 
 
 #grid(
-  columns: (1fr, 1fr),
+  columns: (1fr, 1fr), // Два столбца одинаковой ширины
   
   image("images/im11.png",width: 100%),
   image("images/im11.1.png",width: 100%)
@@ -130,7 +142,7 @@
 $ S_"сеч" = integral_(y_1(x))^(y_2(x)) f(x,y) dif y  $
 $ underbrace(limits(integral.double)_D f(x,y) dif x dif y, "двойной") = underbrace(integral_a^b (integral_(y_1(x))^(y_2(x)) f(x,y) dif y) dif x, "кратный" ) $
 #pagebreak()
-==== 1.4. Запись
+==== Запись
 
 Кратный интеграл пишут без скобок:
 $ integral_a^b (integral_(y_1(x))^(y_2(x)) f(x,y) dif y) dif x eqlong(top:"запись") integral_a^b dif x integral_(y_1(x))^(y_2(x)) f(x,y) dif y $
@@ -152,7 +164,7 @@ $ integral_a^b (integral_(y_1(x))^(y_2(x)) f(x,y) dif y) dif x eqlong(top:"за�
 
 #pagebreak()
 
-=== 2. Тройной интеграл
+=== Тройной интеграл
 \
 $T$ -- тело, область интегрирования $f(x,y,z):T subset RR^3 -> RR$. \
 #image("images/im12.png")
@@ -169,7 +181,7 @@ $ limits(integral.triple)_T f(x_i, y_i, z_i) dif x dif y dif z = integral_a^b di
 #pagebreak()
 
 
-=== 3. Замена переменной. Криволинейные координаты.
+=== Замена переменной. Криволинейные координаты.
 \
 
 #mem[
@@ -200,7 +212,7 @@ $ limits(integral.triple)_T f(x_i, y_i, z_i) dif x dif y dif z = integral_a^b di
 
     
 #grid(
-  columns: (1fr, 1.2fr), 
+  columns: (1fr, 1.2fr), // Два столбца одинаковой ширины
   
   image("images/im.png",width: 70%),
   image("images/im0.png",width: 70%)
@@ -240,7 +252,7 @@ $ cases(x= rho cos phi, y = rho sin phi) $
 
 #pagebreak()
  
-==== 3.1 Криволинейные координаты
+==== Криволинейные координаты
 
 #def[
 В $RR^3$ введена ДСК $O x y z$. Определена тройка гладких функций $ cases(xi = xi(x,y,z),eta = eta(x,y,z),zeta = zeta(x,y,z)) space, $
@@ -332,7 +344,7 @@ $ rho = O M, \ theta = angle(O z; arrow(O M)) \ M' = "Пр"_(O x y) M \ phi = an
 
 #pagebreak()
 
-==== 3.2 Замена переменной
+==== Замена переменной
 
 
 #mem[
@@ -419,9 +431,6 @@ $ S_(A B C D) approx underbrace(lr(|mat(delim: "|",(partial phi)/(partial v), (p
 $  scr(J) = mat(delim: "|",(partial phi)/(partial v), (partial psi)/(partial v); (partial phi)/(partial u), (partial psi)/(partial u)) - #term[якобиан]. $ 
 
 
-$ scr(J) = lim_(Delta S -> 0) (Delta S)/(Delta S'), space space space space Delta S = |scr(J)| underbrace(dif u dif v, Delta S') + o(Delta S) $
-
-
 *Формула*:
 $ limits(integral.double)_D_(x y) f(x,y) dif x dif y = limits(integral.double)_D_(u v) tilde(f)(u,v) |scr(J)| dif u dif v $
 
@@ -429,5 +438,219 @@ $ limits(integral.double)_D_(x y) f(x,y) dif x dif y = limits(integral.double)_D
 
 
 
+#nota[
+  Таким образом, геометрический смысл Якобиана:
+  
+$ scr(J) = lim_(Delta S -> 0) (Delta S)/(Delta S') - "коэфф. искажения площади" Delta S' = dif u dif v "при" $
+$ "искривлении коорд. линий" u, v. $
+$ Delta S = |scr(J)| underbrace(dif u dif v, Delta S') + o(Delta S) $
+]
+
+#nota[
+  Для $"Ф"_n"П": f(x_1, x_2, ..., x_n): RR^n -> RR$
+
+  $"Исходная СК:" O x_1, x_2, ..., x_n - "ДСК."$
+
+  Переход к криволинейной СК:
+  $ cases(x_1 = x_1(phi_1, phi_2, ..., phi_n), x_2 = x_2(phi_1, phi_2, ..., phi_n), ..., x_n = x_n (phi_1, phi_2, ..., phi_n)) $
+
+  $ scr(J) = mat(delim: "|",
+  (partial x_1)/(partial phi_1), (partial x_2)/(partial phi_2), ...,  (partial x_n)/(partial phi_n); 
+  ..., ..., ..., ...;
+  dots.v, dots.v, dots.v, dots.v;
+  (partial x_n)/(partial phi_1), (partial x_n)/(partial phi_2), ...,  (partial x_n)/(partial phi_n))  $
+
+  Тогда, $ limits(integral)_Omega f(arrow(x)) dif v = limits(integral)_Omega' f(arrow(phi)) dot |scr(J)| dif Theta $
+  $ dif Theta = dif phi_1 dif phi_2 dot ... dot dif phi_n $
+]
+#pagebreak()
+
+#ex[
+  *Объем "мороженки"*:
+
+  #image("images/im25.png", width: 60%)
+  Концентрические конус и шар:
+  
+  $T: z = sqrt(x^2+y^2)$
+  
+  $T: z = sqrt(1-x^2-y^2)$
+
+  $ arrow(r) - "радиус вектор". \ "Так как есть концентричность (упаковывается в шар с центром" O")," \  "переходим в сферическую СК:"  $
+
+  $ cases(x=rho cos phi sin theta,y=rho sin phi sin theta,z=rho cos theta) $
+
+  $ "Конус:" cos theta = sin theta <=> tan theta = 1 <=> theta = pi/4 => theta arrow.t_0^(pi/4) $
+
+  $ "Сфера:" rho = 1 => rho arrow.t_0^1, space phi arrow.t_0^(2 pi)  $
+
+  $ "В ДСК:" \ V_T = integral_T 1 dot dif x dif y dif z eqlong(top: "Сферическая", bottom: "СК") integral_T |scr(J)| dif rho dif phi dif theta eqlong(top:"кратный") \ = integral dif phi integral dif theta integral rho^2 sin theta dif rho = $
+  $ = phi|_0^(2 pi) dot integral_0^(pi/4) sin theta dif theta dot integral_0^1 rho^2 dif rho = 2 pi (- cos theta)|_0^(pi/4) dot lr(rho^3 /3|)_0^1 = \ =  2 pi (1 - 1/(sqrt(2))) dot 1/3 = (sqrt(2) (sqrt(2)-1))/3 pi $
+
+]
 
 
+#pagebreak()
+
+
+== Криволинейные интегралы
+
+=== Определение. Свойства.
+
+#nota[
+  Построим интегралы в соответствующих задачах.
+]
+
+#ex[
+  *Задача 1*
+
+  Найти массу неоднородного искривленного (плоского) стержня.
+
+#image("images/im26.png", width: 50%)
+  Стержень $A B -$ плоская кривая с уравнением $y=y(x).$ Потребуем гладкости $y(x)$.
+
+  Вырежем из $A B$ элемент $dif l$.
+
+  По стрежню распределена плотность $rho(M) = rho(x,y) - $ функция точки.
+
+  Если элемент $dif l$ мал, то изменение плотности в нем незначительны. Во всяком случае, мы этого потребуем.
+
+  Выберем любую точку в элементе $dif l$ и найдем среднее значение $rho(N) dif l -$ средняя масса элемента.
+
+  Вся масса $A B$ равна $integral_(A B) rho(x,y) dif l$
+]
+#pagebreak()
+  *Строго*:
+
+  Дробление дуги на $Delta l_i$ #image("images/im27.png")
+
+  Замена с точностью до бесконечно малого высшего порядка $Delta l_i = Delta S_i$  
+
+  #image("images/im28.png")
+
+  $ Delta S_i = Delta x_i sqrt(1+((Delta y_i)/(Delta x_i))^2) $
+
+  Тогда
+  
+  $ limits(integral)_(A B) rho(x,y) dif l eqlong(top:"def") limits(lim_(n->oo))_(tau ->0) sum_(i=0)^n
+  f(xi_i, eta_i) dot Delta l_i -
+  $
+  $ "криволинейный интеграл I рода (интеграл по дуге)." $
+
+
+
+*Свойства* (очевидные): 
+
++ Линейность, аддитивность.
+
++ Не меняет знак при смене направления: $integral_(A B) = integral_(B A)$
+
+#ex[
+  *Задача 2*:
+
+  Сила совершает работу по перемещению мат. точки вдоль плоского криволинейного пути.
+
+  Найти работу.
+
+  #mem[
+    #image("images/im29.png", width: 70%)
+    #image("images/im30.png", width: 70%)
+
+    $A = arrow(F) dot arrow(S) -$ формула для константных величин.
+  ]
+
+  Для переменной силы: $arrow(F) = (P(x,y), Q(x,y))$
+
+  #image("images/im31.png", width: 80%)
+
+  Для криволинейного пути:
+
+  #image("images/im32.png", width: 50%)
+
+  Гладкая дуга $A B$ -- спрямляемая (функция, задающая $A B -$ непрерывно дифференцируема.)
+
+  Вырезаем элемент дуги $dif l$.
+
+  #image("images/im33.png", width: 50%)
+
+  При малых $dif l$ $arrow(F)$ меняется мало (требуем), $dif l approx dif s$.
+
+  В произвольной точке $dif l$ находим элементарную работу $ dif A = arrow(F)(N) arrow(dif s) $
+$ N = (xi, eta)- "средняя точка" $
+$ arrow(F)(N) = (P(xi, eta), Q(xi, eta)) $
+$ arrow(dif s) = (dif x; dif y) $
+
+#image("images/im34.png", width: 50%)
+
+Находим всю работу
+$ A = limits(integral)_L dif A = limits(integral)_L arrow(F) dot arrow(dif s) = limits(integral)_L (P(x,y), Q(x,y)) dot (dif x, dif y) = $
+$ = limits(integral)_L (P(x,y) dif x + Q(x,y) dif y) eqlong(top:"пишут") $
+$ = limits(integral)_L P dif x + Q dif y - "интеграл II рода (в проекциях)" $
+$ limits(integral)_L arrow(F) arrow(dif s) $
+]
+
+*LAB* строгое определение 2 рода через дробление, предел интегральных сумм...
+
+*Свойства интеграла II рода*:
+
++ Линейность 
+
++ Аддитивность
++ Меняется знак при смене направления:  $ integral_(A B) P dif x + Q dif y = - integral_(B A) P dif x + Q dif y
+$
+
+#pagebreak()
+
+*Иная запись:*
+
+Запишем $arrow(dif s)$ в направлениях:
+
+#image("images/im35.png",width: 40%)
+
+$ |arrow(dif s)| = arrow(dif s) $
+$ arrow(dif s) = (cos alpha dif s; cos beta dif s) = dif s dot underbrace((cos alpha; cos beta), "единичный вектор") $
+
+
+$ limits(integral)_L (P, Q) (dif x, dif y) = limits(integral)_L (P,Q) (cos alpha; cos beta) dif s = underbrace(limits(integral)_L (P cos alpha + Q cos beta)  overbrace(dif s, "длина хорды (дуги)"), "интеграл I рода") $
+
+#pagebreak()
+
+=== Вычисление
+
+#nota[
+  Сводим к интегралу $integral_a^b y(x) dif x$
+]
+
+  1. $ limits(integral)_L f(x,y) dif l eqlong(top:"параметризация дуги", bottom: cases(x=x(t), y=y(t)) "," t in [alpha, beta]) limits(limits(integral)_(L:space x(t) comma y(t)))_(t in [alpha, beta]) f(x(t), y(t)) dif l eqlong(top: "дифференциал дуги", bottom: dif l = sqrt((x'(t))^2 + (y'(t))^2) |dif t|) \ = integral_alpha^beta tilde(f)(t) sqrt(x'_t^2 + y'_t^2) |dif t| $
+
+  2. $ limits(integral)_L P(x,y) dif x + Q(x,y) dif y  eqlong(top: "параметризация", bottom: L: x(t)"," y(t)) limits(limits(integral)_(L:space x(t) comma y(t)))_(t in [alpha, beta]) tilde(P)(t) overbrace(dif x(t), x'(t)dif t) + tilde(Q)(t) overbrace(dif y(t), y'(t) dif t) = $
+    $ =integral_alpha^beta (tilde(P)(t) x'(t) + tilde(Q)(t)y'(t)) dif t $
+
+    Направление $alpha -> beta$ согласовано с $A -> B$.
+
+    #image("images/im36.png")
+
+
+#pagebreak()
+
+#ex[
+  $L = overline(A B), space A(1;1), space B(3,5) $
+  \ $f(x,y) = x+y$
+
+  $limits(integral)_L f(x,y) dif l$
+
+  1. Параметризация $overline(A B)$
+
+  #image("images/im37.png", width: 40%)
+
+
+  $ (x-x_A)/m = (y-y_A)/n, space (m, n) = arrow(A B) = (2;4) $
+
+  $ (x-1)/2 = (y-1)/4 <=> x-1 = (y-1)/2 <=> 2x - 2 = y-1 <=> y = 2x - 1 $
+  $ cases(y= 2x -1, x=x)   space space - "параметризация." $ 
+
+  2. $f(x,y)= tilde(f)(x) = x+ (2x-1)=3x - 1$
+
+  3. $dif l = sqrt(1 + (y'(x)^2)) dif x = sqrt(1+4) dif x = sqrt(5) dif x $
+
+  $limits(integral)_(overline(A B)) (x+y) dif l = integral_1^3 (3x-1) sqrt(5) dif x = ...$ 
+]
