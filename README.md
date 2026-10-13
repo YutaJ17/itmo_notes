@@ -30,7 +30,7 @@ ITMO university study materials, Software Engineering, y29.
 ### Алгоритмы и структуры данных
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Миниописание LZ77   | Пермяков А.С. | [MD File](./2-semester/algorithms/LZ77.md)|
+| Миниописание LZ77   | Пермяков А.С. | [MD File](./materials/2-semester/algorithms/LZ77.md)|
 
 
 ### Математический анализ
