@@ -6,7 +6,7 @@ on:
       - dev_A
       - main
     paths:
-      - conspectuses/**
+      - materials/**
       - .github/workflows/ci.yml
   workflow_dispatch:
 
@@ -50,7 +50,7 @@ jobs:
         uses: typst-community/setup-typst@v4
         with:
           typst-version: ^0.14
-          cache-dependency-path: conspectuses/requirements.typ
+          cache-dependency-path: materials/requirements.typ
 
       - name: Compile PDFs
         shell: bash
@@ -58,7 +58,7 @@ jobs:
           set -euo pipefail
           mkdir -p build
 
-          find conspectuses -type f -name '*.typ' ! -name 'theme.typ' \
+          find materials -type f -name '*.typ' ! -name 'theme.typ' \
             ! -name 'common.typ' ! -name 'requirements.typ' -print0 |
             while IFS= read -r -d '' source; do
               name="$(basename "${source%.typ}")"
