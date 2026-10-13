@@ -1,0 +1,93 @@
+name: Build and deploy PDFs
+
+on:
+  push:
+    branches:
+      - dev_A
+      - main
+    paths:
+      - conspectuses/**
+      - .github/workflows/ci.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Libertinus fonts
+        run: |
+          curl -sSL https://github.com/alerque/libertinus/releases/download/v7.051/Libertinus-7.051.zip -o libertinus.zip
+          unzip -q libertinus.zip
+          mkdir -p "$HOME/.fonts"
+          cp Libertinus-7.051/static/OTF/*.otf "$HOME/.fonts"
+
+      - name: Install Font Awesome fonts
+        run: |
+          curl -sSL https://github.com/FortAwesome/Font-Awesome/releases/download/7.2.0/fontawesome-free-7.2.0-desktop.zip -o fa.zip
+          unzip -q fa.zip
+          mkdir -p "$HOME/.fonts"
+          cp fontawesome-free-7.2.0-desktop/otfs/*.otf "$HOME/.fonts"
+
+      - name: Install Source fonts
+        run: |
+          curl -sSL https://github.com/fontist/source-fonts/releases/download/v1.2/source-fonts-latn-1.2.zip -o source.zip
+          unzip -q source.zip
+          mkdir -p "$HOME/.fonts"
+          cp fonts-latn/*.ttf "$HOME/.fonts"
+
+      - name: Configure Typst font path
+        run: |
+          ls -lh "$HOME/.fonts"
+          echo "TYPST_FONT_PATHS=$HOME/.fonts" >> "$GITHUB_ENV"
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: ^0.14
+          cache-dependency-path: conspectuses/requirements.typ
+
+      - name: Compile PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build
+
+          find conspectuses -type f -name '*.typ' ! -name 'theme.typ' \
+            ! -name 'common.typ' ! -name 'requirements.typ' -print0 |
+            while IFS= read -r -d '' source; do
+              name="$(basename "${source%.typ}")"
+              output="build/${name}.pdf"
+              typst compile "$source" "$output"
+            done
+
+      - name: List generated PDFs
+        run: find build -type f -name '*.pdf' -print
+
+      - name: Upload PDFs as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Course-pdfs
+          path: build/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download generated PDFs
+        uses: actions/download-artifact@v5
+        with:
+          name: Course-pdfs
+          path: public
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public
+          force_orphan: true
