@@ -28,9 +28,9 @@ ITMO university study materials, Software Engineering, y29.
 
 
 ### Алгоритмы и структуры данных
-|    Тип материала    |     Лектор    | Ссылка |
-|---------------------|---------------|--------|
-| Миниописание LZ77   | Пермяков А.С. | [MD File](./materials/2-semester/algorithms/LZ77.md)|
+|    Тип материала | Ссылка |
+|---------------------|--------|
+| Миниописание LZ77   | [MD File](./materials/2-semester/algorithms/LZ77.md)|
 
 
 ### Математический анализ
@@ -44,7 +44,7 @@ ITMO university study materials, Software Engineering, y29.
 ### Линейная алгебра
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| КонспектЛекций | Далевская О.П. | [PDF](https://yutaj17.github.io/itmo_notes/linear_algebra_2_sem.pdf)|
+| Конспект лекций | Далевская О.П. | [PDF](https://yutaj17.github.io/itmo_notes/linear_algebra_2_sem.pdf)|
 
 *(без диффуров, появятся позже)*
 
@@ -63,7 +63,7 @@ ITMO university study materials, Software Engineering, y29.
 
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Конспект Лекций | Ржонсницкая Ю.Б. | [PDF](https://yutaj17.github.io/itmo_notes/theory_of_probability_3_sem.pdf)|
+| Конспект лекций | Ржонсницкая Ю.Б. | [PDF](https://yutaj17.github.io/itmo_notes/theory_of_probability_3_sem.pdf)|
 
 *(до лекции №6 включительно)*
 
@@ -71,7 +71,7 @@ ITMO university study materials, Software Engineering, y29.
 
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Конспект Лекций     | Мацнев Н.И.   | TBA    |
+| Конспект лекций     | Мацнев Н.И.   | TBA    |
 | Билеты к Коллоку №4 | Маятин А.В.   | TBA    |
 
 ---
