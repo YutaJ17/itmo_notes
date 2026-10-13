@@ -12,9 +12,9 @@ ITMO university study materials, Software Engineering, y29.
 | Билеты к Коллоку №2 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_2.pdf)|
 
 ### Алгоритмы и структуры данных
-|    Тип материала    |     Лектор    | Ссылка |
-|---------------------|---------------|--------|
-| Методичка по асимптотикам | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/asymptotics_cheatsheet_sem_1.pdf)|
+|    Тип материала    | Ссылка |
+|---------------------|--------|
+| Методичка по асимптотикам | [PDF](https://yutaj17.github.io/itmo_notes/asymptotics_cheatsheet_sem_1.pdf)|
 
 
 ## 2й семестр
