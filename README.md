@@ -1,6 +1,6 @@
 # ITMO University Study Materials
 
-ITMO university study materials, Software Engineering, y29.
+ITMO university study materials, Software Engineering, y29
 
 
 ## 1й семестр
