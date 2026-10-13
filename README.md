@@ -8,14 +8,13 @@ ITMO university study materials, Software Engineering, y29.
 ### Дискретная математика
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Билеты к Коллоку №1 | Пермяков А.С. | [PDF](./1-semester/discrete_math/discrete_math_col_1.pdf)|
-| Билеты к Коллоку №2 | Пермяков А.С. | [PDF](./1-semester/discrete_math/discrete_math_col_2.pdf)|
+| Билеты к Коллоку №1 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_1.pdf)|
+| Билеты к Коллоку №2 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_2.pdf)|
 
 ### Алгоритмы и структуры данных
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Методичка по асимптотикам | Пермяков А.С. | [PDF](./1-semester/algorithms/asymptotics.pdf)|
-
+| Методичка по асимптотикам | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/asymptotics_cheatsheet_sem_1.pdf)|
 
 
 ## 2й семестр
@@ -24,8 +23,8 @@ ITMO university study materials, Software Engineering, y29.
 
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Билеты к Коллоку №3 | Пермяков А.С. | [PDF](./2-semester/discrete_math/discrete_math_col_3.pdf)|
-| Билеты к Коллоку №4 | Пермяков А.С. | [PDF](./2-semester/discrete_math/discrete_math_col_4.pdf)|
+| Билеты к Коллоку №3 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_3.pdf)|
+| Билеты к Коллоку №4 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_4.pdf)|
 
 
 ### Алгоритмы и структуры данных
@@ -56,7 +55,7 @@ ITMO university study materials, Software Engineering, y29.
 
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Методичка по асимптотикам | Далевская О.П. | [PDF](https://yutaj17.github.io/itmo_notes/advanced_math_3_sem.pdf)|
+| Конспект лекций | Далевская О.П. | [PDF](https://yutaj17.github.io/itmo_notes/advanced_math_3_sem.pdf)|
 
 *(до лекции №3 включительно)*
 
