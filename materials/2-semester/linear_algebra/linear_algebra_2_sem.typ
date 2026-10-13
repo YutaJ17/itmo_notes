@@ -1,7 +1,8 @@
 #set text(lang: "ru")
 #set text(lang: "ru", font: "Liberation Serif", size: 14pt)
-#import "theme.typ": term, def, th, proof, ex, eqlong, ash, ach, nota, mem, letsym, sh, ch
+#import "./theme.typ": term, def, th, proof, ex, eqlong, ash, ach, nota, mem, letsym, sh, ch
 
+#let zero = (slashed: math.cancel([0]))
 
 #set outline.entry(fill: repeat([.]))
 

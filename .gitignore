@@ -1,0 +1,8 @@
+.idea
+*.pdf
+*.txt
+*.cmd
+.pdf
+
+// Exceptions for the sources.
+!materials/2-semester/math_analysis/images/table.pdf
