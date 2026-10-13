@@ -57,6 +57,7 @@ ITMO university study materials, Software Engineering, y29.
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
 | Методичка по асимптотикам | Далевская О.П. | [PDF](https://yutaj17.github.io/itmo_notes/advanced_math_3_sem.pdf)|
+
 *(до лекции №3 включительно)*
 
 ### Теория вероятностей
@@ -64,6 +65,7 @@ ITMO university study materials, Software Engineering, y29.
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
 | Конспект Лекций | Ржонсницкая Ю.Б. | [PDF](https://yutaj17.github.io/itmo_notes/theory_of_probability_3_sem.pdf)|
+
 *(до лекции №6 включительно)*
 
 ### Базы данных
