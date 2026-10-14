@@ -654,3 +654,216 @@ $ limits(integral)_L (P, Q) (dif x, dif y) = limits(integral)_L (P,Q) (cos alpha
 
   $limits(integral)_(overline(A B)) (x+y) dif l = integral_1^3 (3x-1) sqrt(5) dif x = ...$ 
 ]
+
+
+#pagebreak()
+
+== Поверхностные интегралы
+
+=== Предисловие
+
+#nota[
+  Исследуем понятие поверхности.
+]
+
+==== Понятие поверхности
+
+Будем деформировать плоскую область $D$, не делая дыр,  разрезов, и так получать поверхности. Тогда, это будут двусторонние поверхности. 
+
+#image("images/im40.png", width: 80%)
+
+
+Поверхность $S: z = f(x,y)$
+
+В точке $M$ можно провести 2 вектора нормали: $arrow(n)^+$ и $arrow(n)^-$.
+
+$arrow(n)^+$ -- вектор, который с $O z$ составляет острый угол $alpha$.
+
+$arrow(n)^-$ -- вектор, который с $O z$ составляет тупой угол $beta$.
+
+Если $arrow(n) parallel O x y space (arrow(n) perp O z)$, то не говорим, какая это сторона. 
+
+#pagebreak()
+
+#nota[
+  Односторонняя поверхность.
+
+  #image("images/im38.png", width: 50%)
+
+  Чтобы попасть на другую сторону, не нужно проходить через край.
+]
+
+#nota[
+  Не надо путать верхнюю/нижнюю и внешнюю/внутреннюю стороны.
+
+  
+  _Примечание: возможно, в обозначениях ниже ошибка, уточнить._
+
+  #image("images/im41.png")
+]
+#pagebreak()
+==== Обход участка поверхности
+
+$z = f(x,y)$
+
+$z: D subset RR^2 -> RR$
+
+Обходим участок поверхности так, чтобы он оставался слева. Если при этом идем "головой вверх" (верхняя (положительная) нормаль $arrow(n)^+$), то обход называется положительным.
+
+#image("images/im42.png")
+
+Иначе -- отрицательный обход.
+
+Проектируя обход на $O x y$, получим 
+
+#image("images/im43.png")
+
+#pagebreak()
+
+==== Ориентированный участок
+
+#def[
+Если для участка $S$ поверхности задано направление обхода (или сторона), то говорят, что $S -$ #term[ориентированный участок]. 
+]
+#mem[
+  $ limits(integral)_L P dif x + Q dif y - "интеграл II рода (в проекциях)" $
+  $ - "интеграл по ориентированной дуге." $
+
+
+
+  
+#grid(
+  columns: (1fr, 1fr), // Два столбца одинаковой ширины
+  
+  image("images/im45.png")
+
+, image("images/im35.png",width: 80%)
+)
+]
+
+  $dif l -$ ориентированная кривая. Тогда, хорда $arrow(dif s)-$ вектор (перемещение).
+
+  $arrow(dif s) = (dif x, dif y), dif x, dif y - "дифференциалы любого знака."$
+
+  В направлениях:
+
+  $ dif x = cos alpha underbrace(dif s, "длина" > 0), dif y = cos beta underbrace(dif s, "длина" > 0) $
+
+
+  $ dif s = sqrt((dif x)^2 + (dif y)^2) $
+
+  Считаем работу $ A = limits(integral)_l arrow(F) dot arrow(dif s) = limits(integral)_l (P,Q) (dif x,dif y) = limits(integral)_l (P,Q) (cos alpha, cos beta) dif s $
+
+  $(cos alpha, cos beta) = arrow(dif s)^0 -$ единичный вектор в направлении $arrow(dif s).$
+
+  Часто заменяют единичным вектором касательной $arrow(tau)^0$.
+
+
+==== Ориентация поверхности
+
+#image("images/im46.png", width: 40%)
+
+
+$arrow(dif sigma) -$ ориентированный элемент поверхности.
+
+$dif sigma -$ площадь участка.
+
+$arrow(dif sigma) = arrow(n) dif sigma, arrow(n) -$ единичный вектор нормали $(arrow(n)^+ "или" arrow(n)^-)$.
+
+Проекция участка $arrow(dif sigma)$ на $O x y$ (с учетом ориентации):
+
+$ "пр"_(O x y) arrow(dif sigma) = underbrace(cos gamma dif sigma, "любого знака" comma "тк" cos gamma < 0 "если" gamma - "тупой") = dif x dif y $
+
+
+#image("images/im47 .png", width: 65%)
+
+
+В виду малости, участок $dif sigma$ можно считать плоским ориентированным параллелограммом.
+
+Аналогично строятся проекции $arrow(dif sigma)$ на $O x z$, $O y z$:
+
+$ "пр"_(O x z) arrow(dif sigma) = cos beta dif sigma = dif x dif z $
+$ "пр"_(O y z) arrow(dif sigma) = cos alpha dif sigma = dif y dif z $
+
+$ alpha, beta, gamma - "углы между" arrow(n) "и осями" O x, O y, O z "соответственно." $
+
+
+$ arrow(dif sigma) = arrow(n) dif sigma, space arrow(n) = (cos alpha, cos beta, cos gamma) $
+
+$  arrow(dif sigma) = arrow(n) dif sigma =  (cos alpha, cos beta, cos gamma) dif sigma =  (cos alpha dif sigma, cos beta dif sigma, cos gamma dif sigma) $
+
+Окончательно:
+
+$ arrow(dif sigma) = (dif y dif z, dif x dif z, dif x dif y). $
+
+#pagebreak()
+
+=== Определения 
+
+#def(title:"Поверхностный интеграл по участку поверхности (I рода)")[
+
+
+  Поверхностный интеграл по участку поверхности \ (I рода, то есть без ориентации).
+
+  #image("images/im50.png")
+
+  На $S$ распределена величина $gamma = gamma(x,y,z).$
++ Дробление области $D$ (или $S$) плоскостями $x = "const", y= "const"$.
+
++ Выбор средней точки $M_"ср" (xi_i, eta_i) in D$ в каждом участке со сторонами $Delta x_i$, $Delta y_i$ и площадью $Delta S_i = Delta x_i dot Delta y_i$.
+
++ Интегральная сумма $s_n = sum gamma(N_"ср") dif sigma_i$
+
++ $ limits(integral.double)_S gamma(x,y,z) dif sigma = limits(lim_(n->oo))_(tau -> 0) s_n in RR $
+]
+
+#nota[
+  Если $gamma(x,y,z) -$ массовая плотность (переменная), то  $ limits(integral.double)_S gamma(x,y,z) dif sigma$ -- масса неоднородной поверхности $S$.
+
+  Если $gamma = 1$, то $ limits(integral.double)_S dif sigma = S_"поверхности".$
+]
+
+#pagebreak()
+
+#def(title: "Поверхностный интеграл в проекциях (II рода)")[
+  Поверхностный интеграл в проекциях \ (по ориентированному участку; II рода).
+
+  *Задача:*
+
+  Найдем поток жидкости через участок поверхности $S$.
+
+  Будем считать поток в единицу времени (забыли про время) -- количество жидкости, протекающее через поверхность $S$.
+
+  Для простоты, будем считать, что масса жидкости $m = 1$.
+
+  #image("images/im51.png", width: 70%)
+
+  $V_"цил" = v dot S -$ формула для констант и плоской $S$.
+
+  Масса -- 1, поэтому поток $Pi = V_"цил" = v dot S$
+
+  Усложним:
+
+  #image("images/im53.png", width: 70%)
+
+  $ arrow(v) dot  arrow(n) = "пр"_(arrow(n)) arrow(v), space arrow(n) - "ед. нормальный вектор" $
+
+  $ Pi = arrow(v) dot arrow(n) dot S = arrow(v) dot arrow(S) $
+$ arrow(S) - "ориентированная площадь." $
+\
+  Усложним: $ arrow(v) != "const", S - "не плоская." $
+
+  Считаем элементарный поток $dif Pi$, \ для искривленного элемента $S$ считаем $dif S$ достаточно малым, чтобы 
+
+  $ arrow(dif sigma) = arrow(n) dot dif sigma = (cos alpha, cos beta, cos gamma) dif sigma = (dif y dif z, dif x dif z, dif x dif y) $
+  
+
+  Тогда если $arrow(v) = (P(x,y,z), Q(x,y,z), R(x,y,z))$,
+  то 
+  $ dif Pi = arrow(v) dot arrow(dif sigma) = (P, Q, R) dot arrow(n) dif sigma = (P,Q,R) (cos alpha, cos beta, cos gamma) dif sigma =  $
+  $ = P dif y dif z + Q dif x dif z + R dif x dif y $
+
+  Тогда
+
+  $ П = limits(integral.double)_(S^(plus.minus)) arrow(v) dot arrow(dif sigma) =  limits(integral.double)_(S^(plus.minus)) P dif y dif z + Q dif x dif z + R dif x dif y eqlong(top: "связь с", bottom: integral.double "I рода") \ = limits(integral.double)_S (P cos alpha + Q cos beta + R cos gamma) dif sigma  $
+]
