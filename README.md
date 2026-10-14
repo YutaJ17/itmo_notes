@@ -11,6 +11,8 @@ ITMO university study materials, Software Engineering, y29
 | Билеты к Коллоку №1 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_1.pdf)|
 | Билеты к Коллоку №2 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_2.pdf)|
 
+_временно недоступны, в процессе перехода в typst формат_
+
 ### Алгоритмы и структуры данных
 |    Тип материала    | Ссылка |
 |---------------------|--------|
@@ -57,7 +59,7 @@ ITMO university study materials, Software Engineering, y29
 |---------------------|---------------|--------|
 | Конспект лекций | Далевская О.П. | [PDF](https://yutaj17.github.io/itmo_notes/advanced_math_3_sem.pdf)|
 
-*(до лекции №3 включительно)*
+*(до лекции №4 включительно)*
 
 ### Теория вероятностей
 
