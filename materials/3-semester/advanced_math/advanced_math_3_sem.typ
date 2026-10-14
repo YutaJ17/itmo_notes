@@ -1,6 +1,6 @@
 #set text(lang: "ru")
 #set text(lang: "ru", font: "Liberation Serif", size: 14pt)
-#import "theme.typ": term, def, th, proof, ex, eqlong, ash, ach, nota, mem, letsym, sh, ch
+#import "./theme.typ": term, def, th, proof, ex, eqlong, ash, ach, nota, mem, letsym, sh, ch
 
 #import "@preview/cetz:0.3.1"
 #import "@preview/fletcher:0.5.7": diagram, node, edge
@@ -309,7 +309,7 @@ $ cases(x=rho cos phi sin theta,y=rho sin phi sin theta,z=rho cos theta) $
 
 
 $ M(x,y,z) --> M(rho, phi, theta) $
-$ rho = O M, \ theta = angle(O z; arrow(O M)) \ M' = "Пр"_(O x y) M \ phi = angle(O x; arrow(O M')) $
+$ rho = O M, \ theta = angle(O z, arrow(O M)) \ M' = "Пр"_(O x y) M \ phi = angle(O x, arrow(O M')) $
 
 
 #grid(
@@ -654,6 +654,7 @@ $ limits(integral)_L (P, Q) (dif x, dif y) = limits(integral)_L (P,Q) (cos alpha
 
   $limits(integral)_(overline(A B)) (x+y) dif l = integral_1^3 (3x-1) sqrt(5) dif x = ...$ 
 ]
+
 
 #pagebreak()
 
