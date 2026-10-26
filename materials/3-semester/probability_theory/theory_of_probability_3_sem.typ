@@ -1,6 +1,6 @@
 #set text(lang: "ru")
 #set text(lang: "ru", font: "Liberation Serif", size: 14pt)
-#import "./theme.typ": term, def, th, proof, ex, eqlong, ash, ach, nota, mem, letsym, sh, ch
+#import "theme.typ": term, def, th, proof, ex, eqlong, ash, ach, nota, mem, letsym, sh, ch
 
 #set heading(numbering: "1.1")
 #set outline.entry(fill: repeat([.]))
@@ -9,6 +9,12 @@
   v(12pt, weak: true) 
   strong(it)         
 }
+
+#show outline.entry.where(level: 2): it => {
+  v(12pt, weak: true) 
+  strong(it)         
+}
+
 
 #outline()
 #pagebreak() 
@@ -97,7 +103,7 @@ $ A, B in cal(S) ==> A union B, A inter B, A backslash B, A xor B in cal(S) $
   Множества, входящие в Борелевскую $sigma$--алгебру $cal(B)$, называются #term[борелевскими].
 ]
 
-== Конструирование борелевских множеств из интервалов
+=== Конструирование борелевских множеств из интервалов
 
 1. $ [a;b] = inter.big_(n=1)^oo (a-1/n;b+1/n) $
 
@@ -121,7 +127,7 @@ $ A, B in cal(S) ==> A union B, A inter B, A backslash B, A xor B in cal(S) $
   Тройка $(Omega, cal(S), P)$, включающая в себя пространство элементарных исходов $Omega$, $sigma$-алгебру событий $cal(S)$ и вероятностную меру $P$, называется #term[вероятностным пространством].
 ]
 
-== Следствия из аксиом и монотонность вероятности
+=== Следствия из аксиом и монотонность вероятности
 
 #th(title: "Вероятность противоположного события")[
   Для $forall cal(A) in cal(S) -> P(overline(cal(A)))=1-P(cal(A))$
@@ -793,8 +799,7 @@ $ lim_(x->oo) P(union.big_(i=1)^n A_i) = P(union.big_(i=1)^oo A_i) = P(Omega) = 
 
 #pagebreak()
 
-== Типы случайных величин
-=== Дискретные случайные величины
+== Дискретные случайные величины (ДСВ)
 
 #def(title: "Дискретная случайная величина (ДСВ)")[
  Случайная величина $xi$ называется #term[дискретной], если множество её возможных значений конечно или счётно. \ Задаётся рядом распределения — таблицей значений $x_i$ и их вероятностей $p_i = P(xi = x_i)$, где $sum p_i = 1$.
@@ -809,7 +814,7 @@ $ lim_(x->oo) P(union.big_(i=1)^n A_i) = P(union.big_(i=1)^oo A_i) = P(Omega) = 
     [$ xi $], [$ 1 $], [$ 2 $], [$ 3 $],
     [$ P $], [$ 0.6 $], [$ 0.4 dot 0.6 = 0.24 $], [$ 1 - 0.6 - 0.24 = 0.16 $], 
   )
-  
+
   #image("images/im12.png")
 ]
 #pagebreak()
@@ -902,7 +907,8 @@ $I_A = cases(1 comma space "A произошло", 0 comma space "A не про�
 === Биномиальное распределение
 
 #def(title: "Биномиальное распределение")[
-$xi$ имеет биномиальное распределение с параметрами $n$ и $p$ ($xi tilde "Bern"(p)$), если множество ее значений ${0;1;2;...;n}$ и $ p_i = P(xi = i) = C_n^i p_i (1-p)^(n-i) $
+$xi$ имеет биномиальное распределение с параметрами $n$ и $p$ \ ($xi tilde "Bin"(n, p)$), если множество ее значений ${0;1;2;...;n}$ и $ p_i = P(xi = i) = C_n^i p^i (1-p)^(n-i) $
+
 
 Обозначение:
 
@@ -961,4 +967,357 @@ $xi$  имеет геометрическое распределение с па
   $ P(xi > m + n | xi > n) = P(xi > m) $
 ]
 
+#proof[
+  $ P(xi > m + n | xi > n) = P((xi > m + n) and (xi > n)) / P(xi > n) = \ = P(xi > m + n) / P(xi > n) = (q^(n+m))/q^n = q^m = P(xi > m) $
+]
 
+#nota[
+  $ P(xi > n) = sum_(k=n+1)^oo q^(k-1) p = p sum_(k=n)^oo q^k = p q^n sum_(k=0)^oo q^k = (p q^n)/(1-q) = q^n $
+]
+
+#ex[
+  $p=0.05, q= 0.95$
+
+  Рыбак пытался поймать рыбу 40 раз, но не поймал. Вероятность поймать еще за 10 бросков?
+
+  $ P(xi > 50 | xi > 40) = P(xi > 10) = 0.95^10 approx 0.59 $
+]
+
+#pagebreak()
+
+== Числовые характеристики ДСВ
+
+=== Математическое ожидание
+
+#def(title: "Математическое ожидание")[
+  Пусть ДСВ $xi$ принимает значения $x_1, x_2, ..., x_n, ...$ с вероятностями \ $p_n = P(xi = x_n)$.
+
+  Мат. ожиданием $xi$ называется величина
+
+  $ E(xi) = sum_(n=1)^oo x_n p_n - "сумма ряда," $
+  $ "если ряд сходится абсолютно." $
+]
+
+==== Свойства
+
+1. $ E(C) = C, C = "const" $
+
+2. $ E(C xi) = C dot E(xi) $
+
+3. $ E(xi + eta) = E(xi) + E(eta) $
+
+#nota[
+  Распределение $xi + eta$
+  $ xi : P(xi = x_i) = p_i $
+  $ eta : P(eta = y_j) = q_j $
+Тогда $ xi + eta : x_i + y_j, \ p_(i,j) = P(xi = x_i and eta = y_j) $
+]
+
+#proof[
+  $ EE(xi + eta) = sum_i (sum_j (x_i + y_j) dot p(i,j)) = $  $ =sum_i (sum_j (x_i dot p(i,j) + y_j dot p(i,j))) = sum_i x_i sum_j p_(i,j) + sum_j y_j sum_i p_(i,j) = \ = sum_i x_i dot p_i + sum_j y_j dot p_j = EE(xi) + EE(eta) $
+]
+
+4. $EE(xi dot eta) = EE(xi) dot EE(eta)$
+
+#proof[
+  $ EE(xi dot eta) = sum_i sum_j x_i y_j p_(i,j) = sum_i sum_j x_i y_j underbrace(p_i q_j, xi "и" eta -"независ.") = \ = sum_i x_i p_i sum_j y_j q_j = EE(xi) dot EE(eta) $
+]
+
+#pagebreak()
+
+=== Дисперсия
+
+#def(title:"Дисперсия")[
+  Дисперсией ДСВ $xi$ называется величина $ DD(xi) = EE(xi - EE(xi))^2 $
+]
+
+#nota[
+  $EE(xi - EE(xi)) = EE(xi) - EE(underbrace(EE xi, "const"))= EE(xi) - EE(xi) = 0$
+]
+
+#def(title: "Среднеквадратическое отклонение случайной величины")[
+  $ sigma(xi) = sqrt(DD(xi)) $
+]
+
+==== Свойства
+
+1. Формула для вычисления дисперсии
+$ DD(xi) = EE(xi - EE(xi))^2 = EE(xi^2) - (EE(xi))^2 $
+#proof[
+  $ DD(xi) = EE(xi^2 - 2 xi EE(xi) + (EE(xi))^2) = EE (xi^2) - 2(EE (xi))(EE (xi)) + (EE (xi))^2 = \ = EE (xi^2) - (EE (xi))^2 $
+]
+
+2. $DD (C) = 0$
+
+Замечание: $DD(xi) = 0 <=> xi = C$
+
+3. $DD(xi + C) = D(xi)$
+#proof[
+  $DD(xi + C) = EE(xi + C - EE(xi + C))^2 = EE(xi + C - EE(xi) - C)^2 = DD(xi)$
+]
+
+4. $DD(C xi) = C^2 DD(xi)$
+
+#pagebreak()
+
+5. $DD(xi plus.minus eta) = DD(xi) + DD(eta)$, если $xi$ и $eta$ независимые.
+#proof[
+  $ DD(xi + eta) = EE(xi + eta)^2 - [EE(xi + eta)]^2 = $
+  $ = EE(xi^2) + 2 EE(xi dot eta) + EE(eta^2) - (EE^2(xi) + 2EE(xi)EE(eta) + EE^2 (eta)) = $
+  $ = [EE (xi^2) - EE^2 (xi)] + [EE (eta^2) - EE^2 (eta)] + underbrace(2(EE(xi eta) - EE(xi)EE(eta)), = 0 comma "независ.") =  $
+  $ = DD(xi) - DD(eta) $
+]
+
+#nota[
+  Если $xi$ и $eta$ -- зависимые, то $ DD(xi + eta) = DD(xi) + DD(eta) + 2 "cov"(xi, eta), $
+  где $"cov"(xi, eta) = EE(xi dot eta) - EE(xi) dot EE(eta) space - ("ковариация") $
+]
+
+#pagebreak()
+
+=== Числовые характеристики классических ДСВ
+
+*1. $xi tilde "Bern"(p) space "(индикатор)"$
+*
+ #table(
+    columns: 3, 
+    [$ x_i $], [$ 0 $], [$ 1 $],
+    [$ p_i $], [$ 1-p $], [$ p $]
+  )
+
+$EE(xi) = 0 dot (1-p) + 1 dot p = p$
+
+$DD(xi) = EE(xi^2) - EE^2 (xi) = p - p^2 = p(1-p) = p dot q$
+
+$xi^2 tilde "Bern"(p)$
+
+*2. $xi tilde "Bin"(p,n)$*
+
+$p_k = P(xi = k) = C_n^k p^k (q)^(n-k)$
+
+$ xi = I_1 + I_2 + ... + I_n, space "где" I_k tilde "Bern"(p) $
+
+$ EE(xi) = EE(I_1 + I_2 + ... + I_n) = sum_(k=1)^n EE(I_k) = p dot n $
+
+$ DD(xi) = DD(sum_(k=1)^n I_k) = sum_(k=1)^n underbrace(DD(I_k), p q) = n p q $
+
+*3. $xi tilde "Pois"(lambda), lambda > 0$*
+
+$ P(xi = k) = lambda^k / k! dot e^(-lambda), space k = 0, 1, ... $
+$ EE(xi) = sum_(k=0)^oo k lambda^k / k! e^(-lambda) = e^(-lambda) dot lambda dot sum_(k=1)^oo lambda^(k-1)/(k-1)! = e^(-lambda) lambda sum_(k=0)^oo lambda^k / k! = e^(-lambda) lambda e^lambda = lambda $
+
+$ DD(xi) = EE(xi^2) - EE^2(xi) $
+$ EE (xi^2) = sum_(k=0)^oo underbrace(k^2 lambda^k / k! e^(-lambda), k^2 = k(k-1) + k) = e^(-lambda) sum_(k=2)^oo k (k-1) lambda^k / k! + underbrace(e^(-lambda) sum_(k=1)^oo k lambda^k / k!, = EE(xi) = lambda) = $
+$ = e^(-lambda) lambda^2 sum_(k=2)^oo lambda^(k-2)/(k-2)! + lambda = lambda^2 + lambda $
+
+$ DD(xi) = lambda^2 + lambda - lambda^2 = lambda , space EE(xi = lambda) $
+
+*4. $xi ~ "Geom"(p)$*
+
+$ P(xi = k) = q^(k-1)p, wide k = 1, 2, ... $
+$ EE(xi) = 1/p $
+$ DD(xi) = EE(xi^2) - EE^2(xi) $
+$ k^2 = k(k-1) + k $
+$ EE (xi^2) = sum_(k=1)^oo k^2 q^(k-1) p = p (sum_(k=2)^oo k(k-1) q^(k-1) + sum_(k=1)^oo k q^(k-1)) =  $ 
+$ = p q (sum_(k=0)^oo q^k)'' + EE(xi) = p q (1 / (1 - q))''_(q)  + 1/p = p q 2/(1-q)^3 + 1/p =
+ $
+ $ = (2q)/p^2 + 1/p = (2 q +p)/p^2 = (q+1)/p^2 $
+ $ DD(xi) = (q+1)/p^2 - 1/p^2 = q/p^2 $
+ Итого
+ $ EE(xi) = 1/p, wide DD(xi) = q/p^2 $
+
+ #pagebreak()
+
+=== Ковариация
+
+#def(title: "Ковариация")[
+  $xi, eta -$ две случайные величины. #term[Ковариацией] $xi, eta$ называется величина 
+  $ "cov"(xi, eta) = EE((xi - EE(xi)) dot (eta - EE(eta))) $
+
+  Если $"cov"(xi, eta) = 0,$ то $xi, eta -$ не ковариантные. 
+]
+#v(1em)
+
+Для ДСВ:
+
+$ "cov"(xi, eta) = sum_(i, j) (x_i - EE(xi)) dot (y_j - EE(eta)) p_(i,j) $
+$ "где" xi "принимает значения" x_1, x_2, ... $
+
+$  eta "принимает значения" y_1, y_2, ... $
+
+$  p_(i,j) = P(xi = x_i, eta = y_j) $
+
+*Рассчетная формула для $"cov"(xi, eta)$:*
+
+$ "cov"(xi, eta) = EE(xi eta - (EE xi)eta - (EE eta)xi + EE xi EE eta) = EE(xi eta) - 2 EE(xi)EE(eta) + EE(xi)EE(eta) $
+
+#v(1em)
+
+*Свойства $"cov"(xi, eta)$*
+
+1. Симметрия $"cov"(xi, eta) = "cov"(eta, xi)$
+
+2. Связь с дисперсией $DD(xi) = "cov"(xi, xi)$
+
+3. Линейность
+
+  a) $"cov"(C dot xi, eta) = C dot "cov"(xi, eta)$
+    
+  b) $"cov"(xi + phi, eta) = "cov"(xi, eta) + "cov"(phi, eta)$
+
+4. Условие независимости
+
+  Если $xi, eta -$ независимые, то $"cov"(xi, eta) = 0$
+  
+  Обратное не всегда верно!
+
+#pagebreak()
+
+#ex[
+  $xi -$ количество шпаргалок
+  $eta -$ пульс студента
+
+  Случайные величины зависимы.
+
+  Если $"cov"(xi, eta) > 0$, то при увеличении количества шпаргалок пульс студента в среднем растет (возрастает волнение).
+
+  Если $"cov"(xi, eta) < 0$, то чем больше шпаргалок берет с собой студент, тем спокойнее он себя чувствует (пульс в среднем снижается).
+]
+
+
+Коэффициент корреляции
+
+#def(title: "Коэффициент корреляции")[
+  #term[Коэффициент корреляции] $xi, eta -$ это величина
+  $ rho(xi, eta) = "cov"(xi, eta)/(sqrt(DD xi) sqrt(DD eta)) $
+]
+
+#nota[
+  Нормировали, чтобы избавиться от единиц измерения и сделать показатель универсальным.
+
+  Теперь коэффициент корреляции принимает значения от -1 до 1:
+  - $rho(xi, eta) = plus.minus 1$  говорит о наличии строгой линейной (функциональной) зависимости между случайными величинами.
+  - $rho(xi, eta) = 0$ говорит о том, что случайные величины *некоррелированы* (между ними отсутствует линейная взаимосвязь).
+]
+
+#pagebreak()
+#ex[
+  Стрелок делает 3 независимых выстрела.
+
+  $p -$ вероятность попадания.
+
+  Пусть $xi -$ число попаданий при первом и втором выстреле,
+  
+  $eta -$ число попаданий при втором и третьем выстреле.
+
+  Найти $rho(xi, eta).$
+
+  *Решение*:
+
+  Зададим закон распределения $xi:$
+
+    #table(
+    columns: 4, 
+    [$ xi $], [$ 0 $], [$ 1 $], [$ 2 $],
+    [$ P $], [$ q^2 $], [$ 2 p q $], [$ p^2 $], 
+  )
+
+  $EE(xi) = 2 p q + 2 p^2 = 2p(q + p) = 2p$
+  
+  $DD(xi) = 2 p q + 4 p^2 - 4 p^2 = 2 p q$
+
+  $EE(xi dot eta) - ?$
+  
+  #table(
+    columns: 4, 
+    [$ xi "/" eta $], [$ 0 $], [$ 1 $], [$ 2 $],
+    [$ 0 $], [$ 0 $], [$ 0 $], [$ 0 $], 
+    [$ 1 $], [$ 0 $], [$ 1 $], [$ 2 $], 
+    [$ 2 $], [$ 0 $], [$ 2 $], [$ 4 $]
+  )
+
+    $P_(1,1) = P(xi = 1, eta = 1) = p q^2 + p^2 q = p q (q + p) = p q$ \
+  $P_(1,2) = P(xi = 1, eta = 2) = P("исход " [-, +, +]) = q dot p dot p = p^2 q$ \
+  $P_(2,1) = P(xi = 2, eta = 1) = P("исход " [+, +, -]) = p dot p dot q = p^2 q$ \
+  $P_(2,2) = P(xi = 2, eta = 2) = P("исход " [+, +, +]) = p dot p dot p = p^3$
+
+  Теперь находим $EE(xi dot eta)$, перемножая значения из таблицы на их вероятности:
+  $ EE(xi dot eta) = 1 dot P_(1,1) + 2 dot P_(1,2) + 2 dot P_(2,1) + 4 dot P_(2,2) $
+  $ EE(xi dot eta) = 1 dot p q + 2 dot p^2 q + 2 dot p^2 q + 4 dot p^3 = p q + 4 p^2 q + 4 p^3 $
+  
+  Раскладываем, учитывая $q = 1 - p$:
+  $ EE(xi dot eta) = p(1-p) + 4 p^2 (1-p) + 4 p^3 = p - p^2 + 4 p^2 - 4 p^3 + 4 p^3 = p + 3 p^2 $
+
+  Находим ковариацию:
+  $ "cov"(xi, eta) = EE(xi dot eta) - EE(xi) dot EE(eta) $
+  Поскольку условия для $xi$ и $eta$ симметричны, 
+  
+  $ EE(eta) = EE(xi) = 2p wide DD(eta) = DD(xi) = 2p q $
+  $ "cov"(xi, eta) = (p + 3 p^2) - (2p) dot (2p) = p + 3 p^2 - 4 p^2 = \ = p - p^2 = p(1 - p) = p q $
+
+  Вычисляем коэффициент корреляции:
+  $ rho(xi, eta) = "cov"(xi, eta) / (sqrt(DD(xi)) sqrt(DD(eta))) = (p q) / (sqrt(2 p q) sqrt(2 p q)) = (p q) / (2 p q) = 1/2 $
+
+  *Ответ*: $rho(xi, eta) = 0.5$ (зависимость положительная и не зависит от вероятности $p$).
+
+
+
+  *Другое решение:*
+
+  Пусть $I_k -$ индикатор попадания при $k$ выстреле.
+
+#table(
+    columns: 3, 
+    [$ I_k $], [$ 0 $], [$ 1 $],
+    [$  $], [$ q $], [$ p  $] 
+  )
+
+$EE I_k = p$
+
+$DD I_k = p q$
+
+$xi = I_1 + I_2$
+
+$eta = I_2 + I_3$
+
+$ "cov"(eta, xi) = "cov"(I_1 + I_2, I_2 + I_3) =  $
+$ = (underbrace("cov"(I_1, I_2), 0) + underbrace("cov"(I_1, I_3), 0) + "cov"(I_2, I_2) + underbrace("cov"(I_2, I_3), 0) = $
+$ = "cov"(I_2, I_2) = DD(I_2) = p q $
+
+$ DD(eta) = DD(xi) = DD(I_1 + I_2) = 2 p q $
+
+$ rho(xi, eta) = "cov"(xi, eta) / (sqrt(DD(xi)) sqrt(DD(eta))) = (p q)/(2 p q) = 1/2 $
+]
+
+
+== Непрерывные случайные величины (НСВ)
+
+#def[
+  Случайная величина $xi$ называется #term[абсолютно непрерывной], если ее функция распределения $F(x) = P(xi < x)$ может быть вычислена по формуле
+  $ F(x) = integral_(-oo)^x f(t) dif t, $
+  то есть существует функция $f(t),$ называемая #term[плотностью] $"НСВ"^(-oo) xi$.
+]
+
+#nota[
+  $f : RR-> RR$
+]
+
+=== Свойства плотности НСВ
+
+1. Неотрицательность $f(x)>=0 space forall x in RR$ 
+
+  ($F(x)$ не убывает; $f(x)= F'(x) => f(x)>=0$)
+
+2. Условие нормировки
+
+  $ integral_(-oo)^(+oo) f(x) dif x = 1 wide ("т.к." F(+oo) = 1) $
+
+3. Вероятность попадания в интервал
+
+  $ P(a < xi < b) = integral_a^b f(x) dif x $
+
+  $ P(a < xi < b) = F(b) - F(a) = integral_(-oo)^b f(x) dif x - integral_(-oo)^a f(x) dif x $
+
+4. Связь между плотностью и функцией распределения
+
+  $ f(x) = F'(x) wide ("по теореме Барроу") $
