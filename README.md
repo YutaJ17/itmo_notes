@@ -65,7 +65,7 @@ ITMO university study materials, Software Engineering, y29
 |---------------------|---------------|--------|
 | Конспект лекций | Ржонсницкая Ю.Б. | [PDF](https://yutaj17.github.io/itmo_notes/theory_of_probability_3_sem.pdf)|
 
-*(до лекции №7 включительно)*
+*(до лекции №8 включительно)*
 
 ### Базы данных
 
