@@ -57,7 +57,7 @@ ITMO university study materials, Software Engineering, y29
 |---------------------|---------------|--------|
 | Конспект лекций | Далевская О.П. | [PDF](https://yutaj17.github.io/itmo_notes/advanced_math_3_sem.pdf)|
 
-*(до лекции №3 включительно)*
+*(до лекции №5 включительно)*
 
 ### Теория вероятностей
 
