@@ -11,6 +11,8 @@ ITMO university study materials, Software Engineering, y29
 | Билеты к Коллоку №1 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_1.pdf)|
 | Билеты к Коллоку №2 | Пермяков А.С. | [PDF](https://yutaj17.github.io/itmo_notes/discrete_math_col_2.pdf)|
 
+_временно недоступны, в процессе перехода в typst формат_
+
 ### Алгоритмы и структуры данных
 |    Тип материала    | Ссылка |
 |---------------------|--------|
@@ -71,8 +73,8 @@ ITMO university study materials, Software Engineering, y29
 
 |    Тип материала    |     Лектор    | Ссылка |
 |---------------------|---------------|--------|
-| Конспект лекций     | Мацнев Н.И.   | TBA    |
-| Билеты к Коллоку №4 | Маятин А.В.   | TBA    |
+| Конспект лекций     | Мацнев Н.И.   | [PDF](https://yutaj17.github.io/itmo_notes/data_bases_Matsnev.pdf)    |
+| Конспект лекций     | Маятин А.В.   | [PDF](https://yutaj17.github.io/itmo_notes/data_bases_Mayatin.pdf)    |
 
 ---
 
