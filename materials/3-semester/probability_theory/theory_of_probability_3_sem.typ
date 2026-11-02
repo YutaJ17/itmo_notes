@@ -1321,3 +1321,191 @@ $ rho(xi, eta) = "cov"(xi, eta) / (sqrt(DD(xi)) sqrt(DD(eta))) = (p q)/(2 p q) =
 4. Связь между плотностью и функцией распределения
 
   $ f(x) = F'(x) wide ("по теореме Барроу") $
+
+
+#pagebreak()
+
+#ex[
+  Фиксируется скорость на кольцевой автодороге.
+
+  $xi-$ скорость нарушителей в сотнях км/ч.
+
+  $ F(x) = cases(0 comma x< 1, x^2 - 2x + 1 comma 1<= x < 2, 1 comma 2 <=x) $
+
+#image("images/im15.png", width: 60%)
+
+Найти плотность, максимум плотности.
+
+$ f(x) = F'(x) = cases(0 comma x< 1, 2x - 2 comma 1<= x < 2, 0 comma 2 <=x) $
+
+#image("images/im16.png", width: 60%)
+
+$ x=2 - "точка максимума" f(x) $
+]
+
+#pagebreak()
+
+
+== Числовые характеристики НСВ
+
+=== Математическое ожидание
+
+#def(title: "Математическое ожидание НСВ")[
+  Мат. ожидание НСВ $xi$ -- это величина
+$ EE xi = integral_(-oo)^(+oo) x dot f(x) dif x $
+
+  
+  у плотности конечный носитель
+]
+
+==== Свойства
+
+1. $EE C = C $
+
+
+2. $EE (C xi) = C dot EE xi $
+
+3. $EE (xi + eta) = EE xi + EE eta $
+
+
+4. $EE (xi dot eta) = EE xi dot EE eta, wide xi, eta - "независимые" $
+
+5. $xi >= 0 => EE xi >= 0 $
+
+#v(4em)
+
+=== Дисперсия
+
+#def(title: "Дисперсия НСВ")[
+  Дисперсия НСВ $xi$ - это величина
+  $ DD xi = EE(xi - EE xi)^2 = integral_(-oo)^(oo) (x- EE xi)^2 f(x) dif x $
+]
+
+#nota[
+  $ DD xi = EE xi^2 - EE^2 xi = integral_(-oo)^(oo) (x)^2 f(x) dif x - (integral_(-oo)^(oo) x dot f(x) dif x)^2 $
+]
+
+#pagebreak()
+
+== Классические законы распределения НСВ
+
+=== Равномерное распределение
+
+#def[
+  $xi$ распределена равномерно на $[a;b]$, если ее плотность 
+  
+  $ f(x) = cases(0 comma x < a, 1/(b-a) comma a<= x <= b, 0 comma x > b) $
+  То есть плотность постоянна на $[a;b]$.
+
+  Обозначение:
+
+  $ xi ~ cal(U) [a;b] $
+
+  Функция распределения:
+
+  $ F(x) = cases(0 comma x < a, integral_a^x 1/(b-a) dif t comma a <= x < b,  1 comma x > b), space F(x) = cases(0 comma x < a,  (x-a)/(b-a)  comma a <= x < b,  1 comma x > b) $
+]
+
+#nota[
+#image("images/im17.png")
+
+  Площадь под графиком равна 1 (условие нормировки).
+]
+
+#pagebreak()
+
+
+  *Мат ожидание $xi ~ cal(U)[a;b]$*
+
+  $ EE xi = integral_(-oo)^(+oo) x dot f(x) dif x = integral_a^b x dot 1/(b-a) dif x = 1/(b-a) dot lr(x^2/2|)_a^b = (a+b)/2 $
+
+
+*  Дисперсия $xi ~ cal(U)[a;b]$
+*
+  $ EE xi^2 = integral_a^b x^2 1/(b-a) dif x = 1/(b-a) dot lr(x^2/3|)_a^b = (a^2+a b+b^2)/3 $
+
+  $ DD xi = EE xi^2 - EE^2 xi = (a^2+a b+b^2)/3 - (a+b)^2/4 = (b-a)^2 / 12 $
+
+  $ sigma xi = (b-a)/(2 sqrt(3)) $
+
+
+#ex[
+  Стержень длины 24 см ломают на 2 части.
+
+  $xi ~ cal(U)[a;b]$
+
+  $eta -$ средняя длина большей части.
+  $EE eta = ?$
+
+  $ EE g(xi) = integral_(-oo)^(+oo) g(x) f(x) dif x - "свойство мат ожидания." $
+
+  $ eta = max{xi, 24 - xi} $
+
+  $ EE(g(xi)) = integral_0^24 underbrace(max(x, 24-x), g(x)) dot 1/(24-0) dif x = 1/24 dot 3/4 dot 24^2 = 18 $
+
+  #image("images/im18.png", width: 60%)
+]
+
+=== Экспоненциальное (показательное) распределение
+
+#def[
+  Случайная величина $xi$ распределена по показательному закону 
+  
+  $xi ~ "Exp" (lambda)$ с параметром $lambda > 0,$ если плотность закона $ f(x) = cases(0 comma x < 0, lambda e^(-lambda x) comma x>=0) $ 
+
+  #image("images/im19.png")
+]
+
+Проверим условие нормировки:
+
+$ integral_(-oo)^(+oo) f(x) dif x = integral_0^(+oo) lambda e^(-lambda x) dif x = lambda lr(e^(-lambda x)/(-lambda)|)_0^(+oo) = 0 - (-1) = 1 $
+
+
+Функция распределения $xi ~ "Exp" (lambda)$
+
+$ F(x) = cases(0 comma x <0, integral_0^x lambda e^(-lambda t) dif t comma x>=0), space F(x) = cases(0 comma x <0, 1-e^(-lambda x) comma x>=0) $
+
+*Мат ожидание $xi ~ "Exp" (lambda)$*
+  $ EE xi = integral_0^(+oo) x dot lambda e^(-lambda x) dif x = \ =  lambda(underbrace(x lr(e^(-lambda x)/(-lambda)|)_0^(+oo), 0) + integral_0^(+oo) e^(-lambda x)/(-lambda) dif x) = lr(e^(-lambda x)/(-lambda)|)_0^(+oo) = 1/lambda $
+
+
+*  Дисперсия $xi ~ "Exp" (lambda)$*
+  $ DD xi = EE(xi^2) - (EE xi)^2 $
+
+  $ EE(xi^2) = integral_0^(+oo) x^2 dot lambda e^(-lambda x) dif x = \ =  
+  lambda ( underbrace(x^2 lr( [ e^(-lambda x) / (-lambda) ] |)_0^(+oo), 0) - integral_0^(+oo) 2x dot (e^(-lambda x) / (-lambda)) dif x ) = $
+  $ = 2 integral_0^(+oo) x e^(-lambda x) dif x = 2 / lambda underbrace(integral_0^(+oo) x dot lambda e^(-lambda x) dif x, EE xi = 1 / lambda) = 2 / lambda^2 $
+
+
+  $ DD xi = 2 / lambda^2 - (1 / lambda)^2 = 2 / lambda^2 - 1 / lambda^2 = 1 / lambda^2 $
+
+
+
+
+#th(title: "Свойство нестарения")[
+  $xi ~ "Exp"(lambda), space s,t >0$
+
+  $ P(xi >= s+ t | xi >= S) = P(xi > t) $
+]
+#proof[
+  $ P(xi >= s+ t | xi >= s) = P(xi >= s+ t and  xi >= s)/P(xi >= s) = P(xi >= s + t) / P(xi >= s) $
+
+  $ P(xi >= s) = 1 - P(xi < s) = 1-F(s) = 1-(1-e^(-lambda s)) = e^(-lambda s) $
+
+  Тогда 
+  $  P(xi >= s + t) / P(xi >= s) = e^(-lambda (s+t)) / e^(-lambda s) = e^(-lambda t) = P(xi >= t) $
+]
+
+
+=== Нормальное распределение (Гаусса)
+
+#def[
+  $xi$ распределена нормально с параметрами $a, sigma^2$, если ее плотность $
+  f(x) = 1/(sqrt(2 pi) sigma) e^(-(x-a)^2/sigma^2), space x in RR, sigma > 0 $
+
+  $xi ~ cal(N)(a, sigma^2)$
+
+  #image("images/im20.png", width: 70%)
+
+  a - параметр сдвига, $sigma^2 - $ параметр сжатия
+]
