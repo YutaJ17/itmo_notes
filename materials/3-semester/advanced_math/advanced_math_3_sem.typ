@@ -867,3 +867,261 @@ $ arrow(S) - "ориентированная площадь." $
 
   $ П = limits(integral.double)_(S^(plus.minus)) arrow(v) dot arrow(dif sigma) =  limits(integral.double)_(S^(plus.minus)) P dif y dif z + Q dif x dif z + R dif x dif y eqlong(top: "связь с", bottom: integral.double "I рода") \ = limits(integral.double)_S (P cos alpha + Q cos beta + R cos gamma) dif sigma  $
 ]
+
+#pagebreak()
+
+
+#mem[
+  I рода $ limits(lim_(n->oo))_(tau ->0) S_n = limits(lim_(n->oo))_(tau ->0) sum_(i=1)^n gamma(M_i) Delta sigma_i = limits(integral.double)_S gamma(x,y,z) dif sigma $
+
+#image("images/im60.png")
+
+*Вычисление:*
+
+1. Параметризация $z = f(x,y)$. Тогда $ gamma = gamma(x,y,z), wide dif sigma = sqrt(1 + (z'_x)^2 + (z'_y)^2) dif x dif y $
+
+2. Сведение к двойному: $ I = limits(integral.double)_("ПР"_(O x y) S) gamma(x,y,z(x,y)) sqrt(1 + (z'_x)^2 + (z'_y)^2) dif x dif y $
+$ "ПР"_(O x y) S = D $
+
+]
+
+#pagebreak()
+
+#mem[
+  II рода, построили в задаче о потоке  
+
+  #image("images/im61.png")
+
+$ arrow(F) = (P, Q, R), \  arrow(dif sigma) = (dif y dif z, dif x dif z, dif x dif y) = (cos alpha, cos beta, cos gamma) dif sigma  = arrow(n) dif sigma \ arrow(F) dot arrow(n) = F_n = "пр"_(arrow(n)) arrow(F) $  
+  
+  $ П = limits(integral.double)_(S^(plus.minus)) arrow(F) dot arrow(dif sigma) =  limits(integral.double)_(S^(plus.minus)) arrow(F) dot arrow(n) dif sigma  =limits(integral.double)_(S^(plus.minus)) F_n dif sigma eqlong(top:"координатная форма")  $
+$ = limits(integral.double)_(S^(plus.minus)) P dif y dif z + Q dif x dif z + R dif x dif y = \ eqlong(top: "связь с", bottom: integral.double "I рода")  limits(integral.double)_S underbrace((P cos alpha + Q cos beta + R cos gamma) dif sigma, plus.minus "учитывается в знаках" cos)  $
+
+*Вычисление:*
+
+$ limits(integral.double)_(S^(plus.minus))  R dif x dif y eqlong(top: "параметризация", bottom: S : z = f(x,y)) plus.minus limits(integral.double)_(D) R(x,y,z(x,y)) dif x dif y $
+
+]
+
+#pagebreak()
+
+== Дополнение. Мера множества
+
+\
+Что такое длина, площадь, объем?
+
+=== Мера по Жордану
+
+$E subset RR, "или" E subset [0;1]$
+
+Сегменты (бруски) -- промежутки вида $[a;b)$.
+
+$ "Длина" l_[a;b) = b-a $
+
+$ "Длина" l_[a;a) = l_{a} = 0 $
+
+1. Накроем $E$ одним бруском $P_0 = [0; 1.1)$, $"длина" L_0 = 1.1$.
+
+Но $P_0$ не лежит целиком в $E$ (не включен в $E$).
+
+Сумма длин $P_i$, включенных в $E$ равна $l_0 = 0.$
+
+2. Делим на 2:
+$P_11 = [0;1/2) "и" P_12 = [1/2;1.1)$. В каждом есть точки $E$. \ Тогда, сумма длин $L_1 = l_P_11 + l_P_12 = 1.1$
+
+#image("images/im62.png", width: 70%)
+
+$ P_(11,22) subset.not E => l_1 =0 $
+
+3. Делим на 3:
+
+$P_21 = [0; 10/21), space P_22 = [10/21; 0.9), space P_33 = [0,9; 1.1)$
+
+#image("images/im63.png", width: 70%)
+
+$P_23$ не содержит точек $E$.
+$space$Сумма длин $L_2 = 10/21 + 0.9 - 10/21 = 0.9,$ $space space$
+$l_2=0$
+
+4. Делим на 4:
+
+$P_31 = [0;1/3), space P_32 = [1/3; 1/2), space P_33 = [1/2;5/6), space P_34 = [5/6; 1.1)$
+
+#image("images/im64.png", width: 70%)
+
+$P_32, P_34$ не содержат точек множества -- выкидываем.
+
+$L_3 = l_P_31 + l_P_33 = 2/3$
+
+$l_3 = 0$
+
+5. Иное разбиение при $n=4$:
+
+#image("images/im65.png", width: 70%)
+
+$tilde(L)_3 = 1.1, space tilde(l)_3 = l_P_31 + l_P_33 = 1/4 + 1/4 = 1/2$
+
+Таким образом,
+- у последовательности $L_n$ будет инфимум, она будет убывать;
+- у последовательности $l_n$ будет супремум, она будет возрастать;
+
+#nota[
+На каждом этапе — конечное число брусков, суммируем конечную сумму. Это конечно-аддитивный объём, заданный на алгебре (конечные объединения/пересечения), а не на σ-алгебре.
+]
+
+#pagebreak()
+
+==== План:
+
+1. Накрываем $E$ набором брусков $P_(i,j).$
+
+Считаем суммарную длину тех, что содержат точки множества $E$. \ На $n-$ом шаге получаем $L_n$. Эта последовательность убывает и имеет инфимум
+
+$ L_n limits(-->)_(n->oo) inf L_n eqlong(top:"def") "mes"^* E - "внешняя мера Жордана". $
+
+Считаем сумму длин брусков, полностью входящих в $E$:
+
+$ l_n limits(-->)_(n->oo) sup l_n eqlong(top:"def") "mes"_* E - "внутренняя мера Жордана". $
+
+#def(title: "Жорданова мера")[
+$"mes" E = "mes"_* E = "mes"^* E$ (если меры равны) называется жордановой мерой $E$.
+]
+
+==== Контрпример:
+
+$E = QQ inter [0;1]$
+
+#image("images/im66.png", width: 70%)
+
+Покрытие брусками от 0 до 1 равной длины $1/n$.
+
+$forall P_(i,j) in.rev x, x in E. space$ Тогда
+$L_n = 1$.
+
+Но $forall P_(i,j) space space P_(i,j) subset.not E.$
+
+Тогда $l_n = 0$.
+
+Тогда $L_n -> 1, l_n -> 0$
+
+$"mes"^* E != "mes"_* E  space space => space$
+$E$ не измеримо по Жордану.
+
+
+
+
+#nota[
+Жордан подходит только для «хороших» множеств (сегменты в $RR, RR^2, RR^3$). Здесь же $"mes"^* = 1$, $"mes"_* = 0$. У Лебега это же множество имеет $mu^* = 0$: счётная аддитивность позволяет «собрать» счётное объединение точек меры 0 в множество меры 0.
+]
+
+
+
+==== Арифметика и свойства меры Жордана
+
+1. $"mes"^* E >= "mes"_* E >= 0$
+
+2. $E_1 subset E_2 => "mes" E_1 <= "mes" E_2$
+
+3. Аддитивность:
+
+  $E = E_1 union E_2, space E_1 inter E_2 = emptyset "или" {a} => \ "mes" E = "mes" E_1 + "mes" E_2 $
+
+#nota[
+Аддитивность только конечная; счётной у Жордана нет — поэтому это не мера в аксиоматическом смысле.
+]
+
+#pagebreak()
+
+==== В пространстве $E subset RR^n$
+
+На $RR^2:$
+
+#image("images/im67.png", width: 60%)
+
+$"mes"E$ определяется также:
+
+#image("images/im68.png", width: 60%)
+
+Все нижние бруски (синие) включены в $E$.
+
+Все верхние (голубой+синий) покрывают $E$.
+
+Верхняя ступенька -- верхняя сумма Дарбу ($"mes"^* E$), \ нижняя ступенька -- нижняя сумма Дарбу ($"mes"_* E$).
+
+#pagebreak()
+
+=== Мера по Лебегу
+
+Допускаем покрытие и наполнение множества счётным набором интервалов.
+
+#nota[
+В отличие от Жордана — сразу счётное покрытие, суммируем ряд. Это и даёт σ-аддитивность.
+]
+
+#image("images/im69.png")
+
+Сумма длин интервалов $alpha_i$, включающих точки множества $E,$ имеет инфимум -- внешняя мера Лебега: $mu^* E$.
+
+Обозначим $C E = S backslash E space -$ дополнение до накрывающего сегмента $S$.
+
+#image("images/im70.png", width: 70%)
+
+$ mu_* E eqlong(top: "внутренняя мера", bottom: "Лебега") "длина" S - mu^* C E $
+
+$ "Для" QQ inter [0;1] = E wide wide C E = II inter [0;1] $
+
+$ "длина" S = 1 = "длина" [0;1] wide mu^* C E = sum_(i) alpha_i = 1 $
+
+$ mu_* E = 1-1 = 0 $
+
+#pagebreak()
+
+#nota[
+Мера Лебега задаётся на $sigma$-алгебре. \ Борелевская σ-алгебра $cal(B)$ — наименьшая $sigma$-алгебра, содержащая все открытые множества; мера Лебега — её пополнение.
+]
+
+
+
+=== Интегралы
+
+==== Интеграл по Риману
+
+$(R) integral_a^b f(x) dif x =$ предел нижних и верхних сумм Дарбу, если они равны.
+
+#th(title: "Критерий")[
+Интеграл Римана существует, тогда и только тогда, когда
+$ lim_(tau -> 0) sum_(i) omega_i Delta x_i = 0 $
+
+$ "где " omega_i - "колебание" f(x) "на" Delta x_i $
+]
+
+См. функцию Дирихле (не интегрируемая по Риману):
+
+#image("images/im71.png", width: 50%)
+
+#pagebreak()
+
+==== Интеграл по Лебегу
+
+$alpha = max(y_i - y_(i-1))$
+
+#nota[
+У Римана дробим по оси $x$ (область определения), у Лебега — по оси $y$ (область значений).
+]
+
+Разбиваем область значений $f$ на промежутки $[y_(i-1), y_i)$; \ каждому промежутку сопоставляем вес $mu {x: y_(i-1) <= f(x) < y_i}$ и суммируем $y_(i-1)$  с этими весами.
+
+#image("images/im72.png")
+
+
+
+Интегральная сумма
+$ S_alpha = sum_(i=1)^n y_(i-1) mu E_(y_(i-1) <= f < y_i) $
+
+$ lim_(alpha -> 0) S_alpha = (L) integral_a^b f(x) dif x $
+
+
+
+#nota[
+Формула — для ограниченной $f$ на множестве конечной меры. Берутся нижние значения $y_(i-1)$; с верхними $y_k$ получается аналогичное утверждение (верхняя сумма Лебега). Сумма здесь — ряд, в отличие от конечной суммы у Жордана.
+]
