@@ -1,7 +1,9 @@
 #set text(lang: "Rus")
 #set enum(numbering: "1).a)")
-#import sym
+
 #import "@preview/thmbox:0.3.0": *
+
+
 #show: thmbox-init()
 #set heading(numbering: none)
 #let my-definition = (name: "Definition", numbering: none, fill: rgb("#e8f8e8"), inset:0.8em,padding: (), base_level: 0, color: green.darken(40%), stroke: 1pt + blue.darken(20%))
@@ -64,6 +66,53 @@
   ],
   numbering: "— 1 —"
 )
+
+#let quote(
+  body,
+  author: none,
+  dark: false,
+  width: 80%,
+) = {
+  let font-size = 1.1em
+  let author-font-size = 0.9em
+  let pad = 0.9em
+  let gap = 1em
+  let stroke-width = 1.5pt
+  let corner = 0.7em
+
+  let accent = blue.darken(20%)
+  if dark {
+    accent = accent.lighten(40%)
+  }
+
+  let body = if type(body) == function {
+    body()
+  } else {
+    [#sym.quote.l.double#body#sym.quote.r.double]
+  }
+
+  align(center, block(
+    width: width,
+    inset: (top: gap),
+  )[
+    #block(
+      width: 100%,
+      inset: pad,
+      radius: corner,
+      stroke: stroke-width + accent,
+    )[
+      #set align(center)
+      #set text(font-size, style: "italic", fill: accent)
+      #body
+      #if author != none [
+        #align(right)[
+          #set text(author-font-size, weight: "bold")
+          --- #author
+        ]
+      ]
+    ]
+  ])
+}
 
 #align(center)[
   #text(1.2em)[*НЕ ФИНАЛЬНАЯ ВЕРСИЯ --- WORK IN PROGRESS*]
@@ -227,7 +276,8 @@ ANSI / SPARC выделил три уровня(Point of View) архитект�
 
 При переходе к SQL корректнее называть отношения таблицами, потому что строго говоря таблица в SQL не является отношением по Кодду.
 
-#align(center)[SQL --- страшный язык \ -c Маятин]
+#quote(author: "Маятин А.В.")[
+SQL --- страшный язык]
 
 Порядок выполнения SELECT:
 
@@ -241,10 +291,10 @@ ANSI / SPARC выделил три уровня(Point of View) архитект�
 
 Эффективное использование агрегатов -- отсечение при помощи WHERE большей части ненужных строк, и лишь потом GROUP BY.
 
-#align(center)[А нехрен было в академ уходить \ -c Маятин]
+#quote(author: "Маятин А.В.")[А нехрен было в академ уходить]
 
 
-Наивный JOIN реализуется тривиально:
+Наивный JOIN реализуется тривиально, Nested loop:
 ```CPP  
 for r in R:
   for s in S:
@@ -320,13 +370,6 @@ $X$ в этой ситуации называется _детерминанто�
 ]
 Старшие НФ ловят аномалии, которые сложно доказать как аномалию. Фактически, это может быть частью бизнес логики. 4-6НФ не выносятся на экзамен/рубежку. 
 
-== Лекция 26.10.2026 (заместо Лекции 15.10.2026)
-
-#pagebreak()
-== Лекция 29.10.2026
-!Рубежка! 
-Проходит в формате развернутых ответов на вопросы на физическом органическом носителе 
-
 == Лекция 26.10.2026 (вместо Лекции 15.10.2026)
 Производительность. Индексы 
 #pagebreak()
@@ -396,7 +439,7 @@ Isolation level 3 --- воспроизводимое чтение. Если тр
 
 Isolation level 4 --- сериализуемость. Если транзакция обращается к данным (любое обращение), то никакая другая транзакция не сможет добавить новые или изменить существующие строки которые могут быть считанны при выполнении транзакции. Проблема производительности настолько серьезна, что данный уровень почти не используется. 
 
-#align(center)[Мог(н)ут, не мог(н)ут, кто его знает \ -c Маятин]
+#quote(author: "Маятин А.В.")[Мог(н)ут, не мог(н)ут, кто его знает]
 
 === Durability 
 
@@ -405,4 +448,4 @@ Isolation level 4 --- сериализуемость. Если транзакц�
 Журналирование транзакций --- сначала пишется план транзакции, причем план пишется в независимую память. Далее выполняем действие транзакции --- стираем строчку в журнале. Тогда при сбое можно восстановить и довыполнить транзакцию. 
 
 == Лекция 12.11.2026
-Безопасность  
+Безопасность 
