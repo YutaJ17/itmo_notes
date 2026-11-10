@@ -1591,7 +1591,7 @@ $ xi tilde cal(N)(0, 1), space space phi(x) = 1/sqrt(2 pi) e^(-x^2/2) $
 
   $ P(|xi - a| < 3 dot sigma) = 2 dot Phi(3) approx 0,9973 $
 
-  #image("im1.png")
+  #image("images/im22.png")
 ]
 
 #nota[
