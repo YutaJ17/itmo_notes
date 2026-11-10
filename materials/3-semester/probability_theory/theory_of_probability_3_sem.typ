@@ -1322,7 +1322,6 @@ $ rho(xi, eta) = "cov"(xi, eta) / (sqrt(DD(xi)) sqrt(DD(eta))) = (p q)/(2 p q) =
 
   $ f(x) = F'(x) wide ("по теореме Барроу") $
 
-
 #pagebreak()
 
 #ex[
@@ -1501,11 +1500,229 @@ $ F(x) = cases(0 comma x <0, integral_0^x lambda e^(-lambda t) dif t comma x>=0)
 
 #def[
   $xi$ распределена нормально с параметрами $a, sigma^2$, если ее плотность $
-  f(x) = 1/(sqrt(2 pi) sigma) e^(-(x-a)^2/sigma^2), space x in RR, sigma > 0 $
+  f(x) = 1/(sigma sqrt(2 pi)) dot e^(-(x-a)^2/sigma^2), space x in RR, sigma > 0 $
 
   $xi ~ cal(N)(a, sigma^2)$
 
   #image("images/im20.png", width: 70%)
 
   a - параметр сдвига, $sigma^2 - $ параметр сжатия
+]
+
+
+==== Стандартное нормальное распределение
+
+$ xi tilde cal(N)(0, 1), space space phi(x) = 1/sqrt(2 pi) e^(-x^2/2) $
+
+Свойства функции Гаусса ($phi(x)$):
+
+1. $phi(x) = phi(-x)$ -- четность
+
+2. Достигает максимум при $x=0$
+
+3. $lim_(x->oo) phi(x) = 0$
+
+4. Условие нормировки $1/sqrt(2 pi) integral_(-oo)^(+oo) e^(-x^2/2) dif x = 1$
+
+#pagebreak()
+
+#th[
+  $ 1/(sigma sqrt(2 pi)) integral_(-oo)^(+oo) e^((x-a)^2/(2 sigma^2)) dif x = 1 $
+]
+#proof[
+  Замена: $t = (x-a)/sigma$
+  $ x = sigma t + a ==> dif x = sigma dif t $
+  $ 1/(sigma sqrt(2 pi)) integral_(-oo)^(+oo) e^((x-a)^2/(2 sigma^2)) dif x = 1/(sqrt(2 pi)) integral_(-oo)^(+oo) e^(-t^2 / 2) dif t $
+
+  $ I^2 = 1/(2 pi) integral_(-oo)^(+oo) e^(-x^2 / 2) dif x integral_(-oo)^(+oo) e^(-y^2 / 2) dif y = 1/(2 pi) limits(integral.double)_(RR^2) e^(-(x^2 + y^2)/2) dif x dif y $
+
+  $ lim_(R -> +oo) 1/(2 pi) limits(integral.double)_(RR^2) e^(-(x^2 + y^2)/2) dif x dif y = 1/(2 pi)  lim_(R -> +oo) integral_(0)^(2 pi) dif phi integral_0^rho e^(-rho^2 / 2) rho dif rho =  $
+  $ = -1/(2 pi) dot (-1) lim_(R->+oo) 2 pi dot lr(e^(-rho^2 / 2)|)_0^R = 1 $
+]
+
+#pagebreak()
+
+==== Функция распределения нормального закона
+
+#def[
+  Функция распределения $xi tilde cal(N)(a, sigma^2)$
+
+  $ F(x) = 1/(sigma sqrt(2 pi)) integral_(-oo)^x e^(-(t-a)^2 /(2 sigma^2)) dif t $
+]
+
+#def[
+  Функция Лапласа
+
+  $ Phi(x) + 1/2 = F_0(x) - "функция распределения" cal(N)(0, 1) $
+
+  $ Phi(x) = 1/sqrt(2 pi) integral_0^x e^(-t^2/2) dif t $
+]
+
+
+#image("images/im10.png")
+
+*Свойства интегральной функции Лапласа $Phi(x)$:*
+
+1. $Phi(0) = 0$
+
+2. Нечетность: $Phi(-x) = - Phi(x)$
+
+3. Пределы: $ lim_(x->+oo) Phi(x) = 1/2, space lim_(x->-oo) Phi(x) = -1/2 $
+
+4. При $x approx 5 space space Phi(x) approx 1$
+
+5. $xi tilde cal(N)(a, sigma^2)$
+
+  $ P(alpha < xi < beta) = F(beta) - F(alpha) =F_0((beta - a)/sigma) - F_0((alpha - alpha)/sigma) = Phi((beta - a)/sigma) - Phi((alpha - a)/sigma) $
+
+#th(title: "Правило 3х сигм")[
+  $ P(|xi - a| < delta) = P(a - delta < xi < a + delta) = $
+  $ = Phi((a+delta -a)/sigma) - Phi((a-delta -a)/sigma) = Phi((delta)/sigma) - Phi((-delta)/sigma) = 2 dot Phi((delta)/sigma) $
+
+  1. Пусть $delta = sigma$:
+
+  $ P(|xi - a| < sigma) = 2 dot Phi(1) approx 0,6826 $
+
+  2. Пусть $delta = 2 dot sigma$
+
+  $ P(|xi - a| < 2 dot sigma) = 2 dot Phi(2) approx 0,9544 $
+
+  2. Пусть $delta = 3 dot sigma$
+
+  $ P(|xi - a| < 3 dot sigma) = 2 dot Phi(3) approx 0,9973 $
+
+  #image("im1.png")
+]
+
+#nota[
+  Правило трех сигм гласит, что практически все значения нормально распределенной случайной величины лежат в интервале $(a - 3sigma; a + 3sigma)$. Вероятность того, что случайная величина примет значение вне этого интервала, составляет менее $0,27%$.
+]
+
+
+#pagebreak()
+==== Математическое ожидание и дисперсия нормального закона
+
+$ xi tilde cal(N)(a, sigma^2) $
+
+$ EE xi = 1/(sigma sqrt(2 pi)) integral_(-oo)^(+oo) x e^(-(x-a)^2/(2sigma^2)) dif x = lr(cases(delim:"[", t = (x-a)/sigma,dif x = sigma dif t)]) = 1/( sqrt(2 pi)) integral_(-oo)^(+oo) (sigma t + a) e^(-t^2/2) dif t = $
+$ = (-sigma)/( sqrt(2 pi)) integral_(-oo)^(+oo) e^(-t^2/2) dif (-t^2/2) + a/(sqrt(2 pi)) integral_(-oo)^(+oo) e^(-t^2/2) dif t = (-sigma)/(sqrt(2 pi)) dot lr(e^(-t^2/2)|)_(-oo)^(+oo) + a/(sqrt(2 pi)) dot sqrt(2 pi) = 0 + a = a $
+
+$ DD xi = EE xi^2 - a^2 $
+
+$ EE xi^2 = 1/(sigma sqrt(2 pi)) integral_(-oo)^(+oo) x^2 e^(-(x-a)^2/(2sigma^2)) dif x = lr(cases(delim:"[", t = (x-a)/sigma, dif x = sigma dif t)]) = 1/sqrt(2 pi) integral_(-oo)^(+oo) (sigma t + a)^2 e^(-t^2/2) dif t = $
+$ = 1/sqrt(2 pi) integral_(-oo)^(+oo) (sigma^2 t^2 + 2 a sigma t + a^2) e^(-t^2/2) dif t = $
+$ = sigma^2/sqrt(2 pi) integral_(-oo)^(+oo) t^2 e^(-t^2/2) dif t + (2 a sigma)/sqrt(2 pi) integral_(-oo)^(+oo) t e^(-t^2/2) dif t + a^2/sqrt(2 pi) integral_(-oo)^(+oo) e^(-t^2/2) dif t = $
+$ = sigma^2/sqrt(2 pi) lr([ -t lr(e^(-t^2/2)|)_(-oo)^(+oo) + integral_(-oo)^(+oo) e^(-t^2/2) dif t ]) + 0 + a^2/sqrt(2 pi) dot sqrt(2 pi) = $
+$ = sigma^2/sqrt(2 pi) lr([ 0 + sqrt(2 pi) ]) + a^2 = sigma^2 + a^2 $
+
+*$ DD xi = (sigma^2 + a^2) - a^2 = sigma^2 $*
+*$ EE xi = a $*
+
+#pagebreak()
+
+== Преобразование случайных величин
+
+=== Преобразование ДСВ
+
+#v(1em)
+
+$xi - $ дискретная случайная величина. 
+
+$x_i -$ значение, $p_i = P(xi = x_i), space i = 1, 2, ...$
+
+Пусть $eta = g(xi) -$ функция;
+$wide y_j = g(x_i)$. 
+
+Вероятности для новых значений определяются как: $ P(eta = y_j) = sum_(i: g(x_i) = y_j) p_i $
+
+
+#ex[
+  #table(
+    columns: 4, 
+    [$ x_i $], [$ -1 $], [$ 0 $], [$ 1 $],
+    [$ p_i $], [$ 0.3 $], [$ 0.2 $], [$ 0.5 $], 
+  )
+
+  $g(x) = x^2$
+
+  $eta = xi^2$
+
+  Найдем возможные значения случайной величины $eta$:
+  $ y_1 = g(-1) = (-1)^2 = 1 $
+  $ y_2 = g(0) = 0^2 = 0 $
+  $ y_3 = g(1) = 1^2 = 1 $
+
+  Так как значение $1$ получается при двух разных исходах исходной величины $xi$, их вероятности складываются:
+  $ P(eta = 0) = P(xi = 0) = 0.2 $
+  $ P(eta = 1) = P(xi = -1) + P(xi = 1) = 0.3 + 0.5 = 0.8 $
+
+  Составим закон распределения для преобразованной случайной величины $eta$:
+
+  #table(
+    columns: 3, 
+    [$ y_j $], [$ 0 $], [$ 1 $],
+    [$ p_j $], [$ 0.2 $], [$ 0.8 $]
+  )
+]
+
+#pagebreak()
+
+=== Непрерывные распределения
+
+#th(title:"Теорема о монотонном преобразовании")[
+  Пусть $f_xi (x) -$ плотность $xi$.
+
+  $g(x) -$ строго монотонна, дифференцируема $forall x in RR$
+
+  $eta = g(xi) -$ новая случайная величина.
+
+  Тогда 
+  $ f_eta (x) = |(g^(-1)(x))'| dot f_xi (g^(-1)(x)) $
+]
+#proof[
+  1. Пусть $g(x)$ строго возрастает
+
+  $ F_eta (x) = P(eta < x) = P(g(x) < x) = P(xi < g^(-1)(x)) = F_xi (g^(-1)(x)) $
+
+  $ F_eta (x) = lr(cases(delim:"[", F_xi (g^(-1) (x)) )])' = underbrace((g^(-1)(x))', > 0) dot f_xi (g^(-1) (x)) = |(g^(-1)(x))'| dot f_xi (g^(-1)(x)) $
+
+  2. Пусть $g(x)$ строго убывает
+
+  $ F_eta (x) = P(eta < x) = P(g(x) < x) = P(xi >= g^(-1)(x)) = 1 - F_xi (g^(-1) (x)) $
+
+  $ F_eta (x) = lr(cases(delim:"[", 1- F_xi (g^(-1) (x)) )])' = underbrace(-(g^(-1)(x))', < 0) dot f_xi (g^(-1) (x)) = \ = |(g^(-1)(x))'| dot f_xi (g^(-1)(x)) $
+]
+
+#pagebreak()
+
+=== Линейные преобразования
+
+#v(1em)
+
+$eta = a xi + b, space a,b, in RR$
+
+$ cases(g(x) = a x + b, g^(-1)(x) = (x-b)/a, (g^(-1))'(x) = 1/a) wide ==> wide f_eta(x) = 1/(|a|) f_xi ((x-b)/a) $
+
+#ex[
+  $xi tilde cal(N)(0, 1)$
+
+  $underbrace(eta = sigma xi + a, a > 0 comma g(x) = sigma x + a) ==> f_eta (x) = 1/(sigma sqrt(2 pi)) phi((x-a)/sigma) - "функция Гаусса" $ 
+]
+
+
+=== Немонотонное преобразование
+
+#ex[
+  $g(x) = x^2$
+
+  $ eta = xi^2 $
+
+  $ F_eta (x) = P(eta < x) = underbrace(P(xi^2 < x), 0 <= x) = P(-sqrt(x) < xi < sqrt(x)) = $
+  $ = F_xi (sqrt(x)) - F(xi)(-sqrt(x)) $
+
+  Тогда $ f_eta (sqrt(x)) - F_xi (-sqrt(x))  $
+
+  Например, если $xi tilde cal(N)(0,1), wide xi^2 = eta$:
+
+  $ f_(xi^2) (x) = 1/(sqrt(x) sqrt(2 pi)) dot e^(-x/2) $
 ]
