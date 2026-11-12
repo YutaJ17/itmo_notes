@@ -1125,3 +1125,316 @@ $ lim_(alpha -> 0) S_alpha = (L) integral_a^b f(x) dif x $
 #nota[
 Формула — для ограниченной $f$ на множестве конечной меры. Берутся нижние значения $y_(i-1)$; с верхними $y_k$ получается аналогичное утверждение (верхняя сумма Лебега). Сумма здесь — ряд, в отличие от конечной суммы у Жордана.
 ]
+
+#pagebreak()
+
+
+== Теория поля
+
+=== Понятие поля, определения, характеристики
+
+==== Скалярное и векторное поля
+
+#def(title:"Скалярное поле")[
+  Скалярная функция $ u(x,y,z): M subset RR^3 -> RR $ называется скалярным полем.
+]
+
+
+#def(title:"Векторное поле")[
+  Вектор-функция $ arrow(F) =(P(x,y,z), Q(x,y,z), R(x,y,z)) = P arrow(i) + Q arrow(j) + R arrow(z), $
+  действующая в $M subset RR^3,$
+  называется векторным полем.
+]
+#ex[
+  #grid(
+    columns: (1fr, 1fr), // делим ширину на 2 равные колонки
+    gutter: 1em,         // отступ между колонками
+    align: center,       // выравнивание по центру
+    
+    figure(
+      image("images/im73.png", width: 80%), // ширина относительно колонки
+      caption: [
+        $u(x,y,z): M -> RR -$ температура, распределенная в $M$ \ -- *скалярное поле*.
+      ],
+      supplement: none, // убирает слово "Рисунок 1:" перед подписью
+    ),
+    
+    figure(
+      image("images/im74.png", width: 80%),
+      caption: [
+        Течение жидкости по трубке $M$. \
+        $arrow(F)(x,y,z) : M -> RR^3 -$ \ *векторное поле* скоростей жидких частиц.
+      ],
+      supplement: none,
+    )
+  )
+]
+
+
+#pagebreak()
+
+#nota[
+  1. Поля могут быть *нестационарными*: $ u = u(x,y,z,t), space arrow(F) = arrow(F)(x,y,z,t), space space t - "время." $
+
+  Далее рассматриваем только _стационарные поля_ (то есть установившиеся).
+
+  2. *Плоские поля*: $ u = u(x,y), wide arrow(F) = P arrow(i) + Q arrow(j) = (P(x,y), Q(x,y)) $
+
+ #ex[
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 1em,
+    align: center + top,
+
+    figure(
+      image("images/im75.png", width: 80%),
+      caption: [
+        $M -$ плоский диск. \
+        $u(x,y) -$ заряд, распределенный по диску.
+      ],
+      supplement: none,
+    ),
+
+    figure(
+      image("images/im76.png", width: 80%),
+      caption: [
+        Круговое (вихревое) течение жидкости. \
+        $arrow(F) = arrow(F)(x,y) -$ поле скоростей.
+      ],
+      supplement: none,
+    )
+  )
+]
+
+]
+
+#pagebreak()
+
+==== Характеристики
+
+
+===== Геометрические характеристики скалярного поля
+#image("images/im77.png", width: 70%)
+
+
+Для плоского поля $ u = u(x,y) : D -> RR $
+
+Геометрический смысл $u -$ поверхность над $D$.
+
+Зафиксируем какое-либо $u(x,y) = "const"$.
+
+#def(title:"Линия уровня")[
+Линия с уравнением $u(x,y) = "const"$ называется линией уровня.
+]
+
+#pagebreak()
+
+#nota[
+  Сами линии уровня -- это не только сечения поверхности, но и их проеции на $O x y$:
+
+  #image("images/im79.png")
+
+  Для скалярного поля $u(x,y)$ -- температуры: линии уровня -- изотермы (линии постоянной температуры, $u(x,y) = "const"$).
+
+  Изображение поля в пространстве через поле на плоскости -- набор линий уровня.
+
+
+  Аналогично, поле $u(x,y,z) "в" RR^3$ (_трехмерное поле_) можно представить поверхностями уровня.
+
+
+  #image("images/im80.png", width: 70%)
+]
+
+#pagebreak()
+
+===== Геометрические характеристики векторного поля
+
+#image("images/im78.png", width: 60%)
+
+#def(title:"Векторная линия")[
+Линия в $RR^3$, которая в каждой точке  касается векторного поля $arrow(F),$ называется векторной линией.
+]
+
+#nota[
+  Векторная линия -- огибающая семейства векторов.
+]
+
+#def(title:"Векторная трубка")[
+Совокупность непересекающихся векторных линий называется векторной трубкой.
+]
+
+#image("images/im81.png")
+
+
+
+#nota[
+  Отыскание уравнений векторных линий сводится к нахождению интегральных кривых: так как вектор $arrow(F)$ касается векторной линии $l$ в каждой точке, то (в малом участке $l$) касательный вектор кривой $arrow(dif tau)$ коллинеарен вектору поля $arrow(F):$
+
+  #image("images/im82.png", width: 60%)
+
+  Здесь: $ arrow(dif tau) = (dif x, dif y, dif z) $
+
+  Тогда $ (dif x) / P = (dif y) / Q = (dif z) / R $
+  -- дифференциальное уравнение (система) векторной линии.
+]
+
+#pagebreak()
+
+#ex[
+  $arrow(F) = y dot arrow(i) - x dot arrow(j),$ точка $M(1,0) in l$ (векторной линии).
+
+  $ arrow(F) = (P, Q) = (y, -x) $
+
+  ДУ: $ (dif x) / y = (dif y) / (-x) $
+
+  $ -x dif x = y dif y $
+
+  $ -x^2 / 2 = y^2 / 2 + C $
+  $ x^2 / 2 + y^2 / 2 = C' $
+  $ x^2 + y^2 = C - "семейство окружностей." $
+  #image("images/im83.png", width: 60%)
+
+  $M_0 -> "в решение":$
+  $ 1 + 0 = C $
+  $ l: x^2 + y^2 = 1 - \ "векторная линия данного поля, проходящая через данную точку" M_0. $ 
+]
+
+
+===== Дифференциальные характеристики скалярного поля
+#v(1em)
+
+$ u = u(x,y,z) - "скалярное поле." $
+
+#mem[
+  1. Производная по направлению
+#image("images/im84.png")
+  
+
+  $ u = u(x,y,z) $
+
+  $ arrow(s) - "заданный вектор направления" $ 
+
+  
+
+  $ (partial u) / (partial s) = (partial u) / (partial x) cos alpha + (partial u) / (partial y) cos beta + (partial u) / (partial z) cos gamma =  ((partial u) / (partial x); (partial u) / (partial y); (partial u) / (partial z) ) dot arrow(s^0) $
+
+
+  2. #term[Градиент] -- вектор, в направлении которого $(partial u) / (partial s)$ наибольшая (вектор частных производных).
+
+  Обозначения: 
+  $arrow("grad") space u$ 
+  
+
+
+  или через оператор набла (оператор Гамильтона)
+
+  $ arrow(gradient) = ((partial) / (partial x); (partial) / (partial y); (partial) / (partial z)) $
+
+   $ arrow(gradient) u = (partial u) / (partial x) arrow(i) + (partial u) / (partial y) arrow(j) + (partial u) / (partial z) arrow(k) $
+
+   Вектор градиента плоского поля всегда перпендикулярен линии уровня
+
+   $ arrow(gradient)u(x,y) = (partial u) / (partial x); (partial u) / (partial y) perp l $
+]
+#pagebreak()
+===== Дифференциальные характеристики векторного поля
+
+
+$ arrow(F) = (P(x,y,z), Q(x,y,z), R(x,y,z)) - "векторное поле." $
+
+#def(title: "Дивергенция")[
+  $ "div" arrow(F) eqlong(top: "def") arrow(gradient) dot arrow(F) = ((partial) / (partial x); (partial) / (partial y); (partial) / (partial z)) dot (P, Q, R) = (partial P) / (partial x) + (partial Q) / (partial y) +  (partial R) / (partial z) $
+]
+
+#nota[
+  Дивергенция -- число.
+]
+
+#def(title: "Вихрь (ротор)")[
+  $ "rot" arrow(F) eqlong(top:"def") arrow(gradient) times arrow(F) = mat(
+    delim: "|",
+    arrow(i), arrow(j), arrow(k);
+    partial / (partial x), partial / (partial y), partial / (partial z);
+    P, Q, R
+  ) = \ = ((partial R)/(partial y) - (partial Q)/(partial z)) arrow(i) + ((partial P)/(partial z) - (partial R)/(partial x)) arrow(j) + ((partial Q)/(partial x) - (partial P)/(partial y)) arrow(k) $
+]
+
+
+#nota[
+  Формулы подчиняются формальным свойствам скалярного и векторного произведений.
+
+  $ underbrace(arrow(gradient) dot (arrow(gradient) times arrow(F)), "смешанное произв.") = 0, $ 
+  так как два вектора коллинеарны ($arrow(gradient)$ участвует дважды).
+]
+
+#def(title: "Оператор Лапласа")[
+$Delta eqlong(top:"def") arrow(gradient) dot  arrow(gradient)  eqlong(top: "обозначение") (arrow(gradient))^2$ называется оператором Лапласа.
+
+$ "Лапласиан" Delta u = ((partial) / (partial x); (partial) / (partial y); (partial) / (partial z)) ((partial) / (partial x); (partial) / (partial y); (partial) / (partial z)) u =   (partial^2 u) / (partial x^2) + (partial^2 u) / (partial y^2) + (partial^2 u) / (partial z^2) $
+]
+
+#nota[
+  Поле, для которого $Delta u = 0$, называется #term[гармоническим].
+]
+
+===== Интегральные характеристики
+
+Векторное поле:
+
+1. Поток поля через поверхность $S^(arrow(n)):$
+
+$ Pi eqlong(top:"def") limits(integral.double)_(S^(arrow(n))) arrow(F) dot arrow(dif sigma) $
+
+2. Циркуляция поля $arrow(F)$ по замкнутому контуру $cal(K):$
+
+$ Gamma eqlong(top:"def") limits(integral.cont)_(cal(K)) arrow(F) dot arrow(dif l) $
+
+#pagebreak()
+
+==== Виды векторных полей
+
+$ arrow(F) = P(x,y,z)  dot arrow(i) + Q(x,y,z)  dot arrow(j) + Z(x,y,z)  dot arrow(k), space P,Q,R - "гладкие в" RR^3 $
+
+#def(title:"Безвихревое векторное поле")[
+  Векторное поле $arrow(F)$ называется безвихревым, если $"rot" arrow(F) = 0$.
+]
+
+#def(title:"Соленоидальное векторное поле")[
+  Векторное поле $arrow(F)$ называется соленоидальным, если $"div" arrow(F) = 0$.
+]
+
+
+
+#nota[
+  У безвихревого поля векторные линии разомкнуты, а у соленоидального -- замкнуты.
+
+    Сфера вокруг трубки и вихревых линий изображает _произвольную замкнутую поверхность $S$_, ограничивающую некоторую область пространства.
+    
+    С её помощью оценивают поток поля: пересекают ли линии границу области (наличие источников или стоков внутри $S$) или остаются замкнутыми внутри неё.
+
+
+  *1. Безвихревое поле ($"rot" arrow(F) = 0$)* --- например, электростатическое поле. \
+  Через замкнутую поверхность $S$ поле втекает или вытекает, то есть внутри $S$ есть источники (или стоки):
+
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 1em,
+    align: center + horizon,
+    image("images/im85.png"),
+    image("images/im86.png"),
+  )
+
+  \ \
+
+  *2. Соленоидальное поле ($"div" arrow(F) = 0$)* --- например, магнитное поле. \
+  Магнитных зарядов в природе не существует, то есть источников нет. Векторные линии замкнуты, а замкнутая поверхность $S$ ограничивает вихревое течение без источников и стоков внутри:
+
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 1em,
+    align: center + horizon,
+    image("images/im87.png"),
+    image("images/im88.png"),
+  )
+]
+
